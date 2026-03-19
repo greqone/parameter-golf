@@ -1,0 +1,24 @@
+{
+  "name": "candidate-long-context-seq2048-full",
+  "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
+  "stage": "promote",
+  "script_path": "records/track_10min_16mb/2026-03-18_LongContextSeq2048/train_gpt.py",
+  "data_variant": "sp1024",
+  "train_shards": 80,
+  "seed": 1337,
+  "checkpoint_every": 500,
+  "env": {
+    "ITERATIONS": "20000",
+    "TRAIN_BATCH_TOKENS": "524288",
+    "VAL_BATCH_SIZE": "524288",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "200",
+    "MAX_WALLCLOCK_SECONDS": "600"
+  },
+  "tags": [
+    "seq2048",
+    "promotion",
+    "verify",
+    "full-track"
+  ]
+}

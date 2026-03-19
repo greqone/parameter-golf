@@ -1,0 +1,27 @@
+{
+  "name": "proxy-fp16-embed-wd3600",
+  "description": "FP16 tied embedding passthrough with longer warmdown and tuned matrix LR.",
+  "stage": "proxy",
+  "script_path": "records/track_10min_16mb/2026-03-18_FP16Embed_WD3600/train_gpt.py",
+  "data_variant": "sp1024",
+  "train_shards": 1,
+  "seed": 1337,
+  "checkpoint_every": 100,
+  "env": {
+    "ITERATIONS": "4000",
+    "WARMUP_STEPS": "0",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "25",
+    "TRAIN_BATCH_TOKENS": "131072",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "45",
+    "MLP_HIDDEN": "992",
+    "WARMDOWN_ITERS": "720",
+    "MATRIX_LR": "0.06"
+  },
+  "tags": [
+    "fp16-embed",
+    "warmdown",
+    "sp1024"
+  ]
+}

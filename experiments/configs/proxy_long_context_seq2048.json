@@ -1,0 +1,24 @@
+{
+  "name": "proxy-long-context-seq2048",
+  "description": "Seq2048 proxy to test longer context training on one shard before 8-GPU promotion.",
+  "stage": "proxy",
+  "script_path": "records/track_10min_16mb/2026-03-18_LongContextSeq2048/train_gpt.py",
+  "data_variant": "sp1024",
+  "train_shards": 1,
+  "seed": 1337,
+  "checkpoint_every": 100,
+  "env": {
+    "ITERATIONS": "3000",
+    "WARMUP_STEPS": "0",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "25",
+    "TRAIN_BATCH_TOKENS": "131072",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "45"
+  },
+  "tags": [
+    "seq2048",
+    "long-context",
+    "sp1024"
+  ]
+}

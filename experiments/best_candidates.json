@@ -1,0 +1,195 @@
+{
+  "best_overall": [
+    {
+      "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+      "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
+      "final_exact_val_bpb": 1.20780728,
+      "final_exact_val_loss": 2.039332,
+      "gpu_count": 8,
+      "gpu_type": "B200+",
+      "name": "candidate-long-context-seq2048-full",
+      "run_id": "20260319-184322-candidate-long-context-seq2048-full",
+      "runtime": "modal:promote",
+      "stage": "promote",
+      "wallclock_seconds": 941.528
+    },
+    {
+      "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+      "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
+      "final_exact_val_bpb": 1.21223295,
+      "final_exact_val_loss": 2.04680455,
+      "gpu_count": 8,
+      "gpu_type": "H100!",
+      "name": "candidate-long-context-seq2048-full",
+      "run_id": "20260319-190545-candidate-long-context-seq2048-full",
+      "runtime": "modal:verify",
+      "stage": "verify",
+      "wallclock_seconds": 935.386
+    },
+    {
+      "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+      "description": "Two-step baseline-shaped smoke using one FineWeb shard and the exact roundtrip export path.",
+      "final_exact_val_bpb": 4.10235146,
+      "final_exact_val_loss": 6.9266486,
+      "gpu_count": 1,
+      "gpu_type": "RTX4090",
+      "name": "proxy-smoke-baseline",
+      "run_id": "20260319-175544-proxy-smoke-baseline",
+      "runtime": "local:proxy",
+      "stage": "proxy",
+      "wallclock_seconds": 914.078
+    },
+    {
+      "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+      "description": "Two-step baseline-shaped smoke using one FineWeb shard and the exact roundtrip export path.",
+      "final_exact_val_bpb": 4.10237326,
+      "final_exact_val_loss": 6.92668541,
+      "gpu_count": 1,
+      "gpu_type": "H100",
+      "name": "proxy-smoke-baseline",
+      "run_id": "20260319-182151-proxy-smoke-baseline",
+      "runtime": "modal:proxy",
+      "stage": "proxy",
+      "wallclock_seconds": 207.361
+    },
+    {
+      "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+      "description": "Seq2048 proxy to test longer context training on one shard before 8-GPU promotion.",
+      "final_exact_val_bpb": 8.96320488,
+      "final_exact_val_loss": 15.13399599,
+      "gpu_count": 1,
+      "gpu_type": "H100",
+      "name": "proxy-long-context-seq2048",
+      "run_id": "20260319-182726-proxy-long-context-seq2048",
+      "runtime": "modal:proxy",
+      "stage": "proxy",
+      "wallclock_seconds": 162.504
+    },
+    {
+      "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+      "description": "FP16 tied embedding passthrough with longer warmdown and tuned matrix LR.",
+      "final_exact_val_bpb": 10.25443194,
+      "final_exact_val_loss": 17.31417879,
+      "gpu_count": 1,
+      "gpu_type": "H100",
+      "name": "proxy-fp16-embed-wd3600",
+      "run_id": "20260319-182726-proxy-fp16-embed-wd3600",
+      "runtime": "modal:proxy",
+      "stage": "proxy",
+      "wallclock_seconds": 163.099
+    },
+    {
+      "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+      "description": "Sliding-window evaluation proxy using the exact record script with experimental paths disabled.",
+      "final_exact_val_bpb": 10.30780641,
+      "final_exact_val_loss": 17.40427706,
+      "gpu_count": 1,
+      "gpu_type": "H100",
+      "name": "proxy-sliding-window-eval",
+      "run_id": "20260319-182727-proxy-sliding-window-eval",
+      "runtime": "modal:proxy",
+      "stage": "proxy",
+      "wallclock_seconds": 752.782
+    }
+  ],
+  "by_stage": {
+    "promote": [
+      {
+        "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+        "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
+        "final_exact_val_bpb": 1.20780728,
+        "final_exact_val_loss": 2.039332,
+        "gpu_count": 8,
+        "gpu_type": "B200+",
+        "name": "candidate-long-context-seq2048-full",
+        "run_id": "20260319-184322-candidate-long-context-seq2048-full",
+        "runtime": "modal:promote",
+        "stage": "promote",
+        "wallclock_seconds": 941.528
+      }
+    ],
+    "proxy": [
+      {
+        "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+        "description": "Two-step baseline-shaped smoke using one FineWeb shard and the exact roundtrip export path.",
+        "final_exact_val_bpb": 4.10235146,
+        "final_exact_val_loss": 6.9266486,
+        "gpu_count": 1,
+        "gpu_type": "RTX4090",
+        "name": "proxy-smoke-baseline",
+        "run_id": "20260319-175544-proxy-smoke-baseline",
+        "runtime": "local:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 914.078
+      },
+      {
+        "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+        "description": "Two-step baseline-shaped smoke using one FineWeb shard and the exact roundtrip export path.",
+        "final_exact_val_bpb": 4.10237326,
+        "final_exact_val_loss": 6.92668541,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-smoke-baseline",
+        "run_id": "20260319-182151-proxy-smoke-baseline",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 207.361
+      },
+      {
+        "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+        "description": "Seq2048 proxy to test longer context training on one shard before 8-GPU promotion.",
+        "final_exact_val_bpb": 8.96320488,
+        "final_exact_val_loss": 15.13399599,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-long-context-seq2048",
+        "run_id": "20260319-182726-proxy-long-context-seq2048",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 162.504
+      },
+      {
+        "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+        "description": "FP16 tied embedding passthrough with longer warmdown and tuned matrix LR.",
+        "final_exact_val_bpb": 10.25443194,
+        "final_exact_val_loss": 17.31417879,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-fp16-embed-wd3600",
+        "run_id": "20260319-182726-proxy-fp16-embed-wd3600",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 163.099
+      },
+      {
+        "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+        "description": "Sliding-window evaluation proxy using the exact record script with experimental paths disabled.",
+        "final_exact_val_bpb": 10.30780641,
+        "final_exact_val_loss": 17.40427706,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-sliding-window-eval",
+        "run_id": "20260319-182727-proxy-sliding-window-eval",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 752.782
+      }
+    ],
+    "verify": [
+      {
+        "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+        "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
+        "final_exact_val_bpb": 1.21223295,
+        "final_exact_val_loss": 2.04680455,
+        "gpu_count": 8,
+        "gpu_type": "H100!",
+        "name": "candidate-long-context-seq2048-full",
+        "run_id": "20260319-190545-candidate-long-context-seq2048-full",
+        "runtime": "modal:verify",
+        "stage": "verify",
+        "wallclock_seconds": 935.386
+      }
+    ]
+  },
+  "updated_at": "2026-03-19T19:25:13+00:00"
+}

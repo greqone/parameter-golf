@@ -1,0 +1,43 @@
+{
+  "checkpoint_path": "/pg-checkpoints/20260319-190545-candidate-long-context-seq2048-full/checkpoint.pt",
+  "code_bytes": 47716,
+  "command": [
+    "torchrun",
+    "--standalone",
+    "--nproc_per_node=8",
+    "/root/parameter-golf/records/track_10min_16mb/2026-03-18_LongContextSeq2048/train_gpt.py"
+  ],
+  "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
+  "compressed_bytes": 15806306,
+  "data_variant": "sp1024",
+  "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
+  "env_overrides": {
+    "ITERATIONS": "20000",
+    "MAX_WALLCLOCK_SECONDS": "600",
+    "TRAIN_BATCH_TOKENS": "524288",
+    "TRAIN_LOG_EVERY": "200",
+    "VAL_BATCH_SIZE": "524288",
+    "VAL_LOSS_EVERY": "0"
+  },
+  "final_exact_val_bpb": 1.21223295,
+  "final_exact_val_loss": 2.04680455,
+  "gpu_count": 8,
+  "gpu_type": "H100!",
+  "iterations": 20000,
+  "logged_train_time_ms": 600080,
+  "name": "candidate-long-context-seq2048-full",
+  "peak_memory_mib": 10185,
+  "returncode": 0,
+  "run_dir": "/pg-results/runs/20260319-190545-candidate-long-context-seq2048-full",
+  "run_id": "20260319-190545-candidate-long-context-seq2048-full",
+  "runtime": "modal:verify",
+  "script_path": "records/track_10min_16mb/2026-03-18_LongContextSeq2048/train_gpt.py",
+  "seed": 1337,
+  "stage": "verify",
+  "status": "ok",
+  "step": 8879,
+  "timestamp_utc": "2026-03-19T19:25:11+00:00",
+  "total_bytes": 15854022,
+  "train_shards": 80,
+  "wallclock_seconds": 935.386
+}

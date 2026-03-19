@@ -1,7 +1,7 @@
 """
 The `train_gpt.py` and `train_gpt_mlx.py` scripts are intended as good launching-off points for new participants, not SOTA configs. We'll accept PRs that tune, improve, or simplify these scripts without significantly increasing complexity, but competitive submissions should stay in the `/records` folder.
 
-Hard stop: To keep readable for newcomers, let's make sure `train_gpt.py` and `train_gpt_mlx.py` never are longer than 1500 lines.
+Hard stop: `train_gpt.py` and `train_gpt_mlx.py` must never be longer than 1500 lines.
 """
 
 from __future__ import annotations
@@ -30,11 +30,12 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 # -----------------------------
 # HYPERPARAMETERS
 # -----------------------------
-# Default Simple Baseline run:
+# Default Long Context Seq2048 v2 run:
 # - 9 transformer blocks at width 512
 # - 8 attention heads with 4 KV heads (GQA) and 2x MLP expansion
-# - vocab size 1024, sequence length 1024, tied embeddings
+# - vocab size 1024, sequence length 2048, tied embeddings
 # - 524,288 train tokens per step for 20,000 iterations with a ~10 minute cap
+# - tuned seq2048 learning rates: 0.040 / 0.032 / 0.032
 
 class Hyperparameters:
     # Data paths are shard globs produced by the existing preprocessing pipeline.
@@ -42,7 +43,7 @@ class Hyperparameters:
     train_files = os.path.join(data_path, "fineweb_train_*.bin")
     val_files = os.path.join(data_path, "fineweb_val_*.bin")
     tokenizer_path = os.environ.get("TOKENIZER_PATH", "./data/tokenizers/fineweb_1024_bpe.model")
-    run_id = os.environ.get("RUN_ID", str(uuid.uuid4()))
+    run_id = os.environ.get("RUN_ID", "long_context_seq2048_v2")
     seed = int(os.environ.get("SEED", 1337))
 
     # Validation cadence and batch size. Validation always uses the full fineweb_val split.
@@ -55,14 +56,9 @@ class Hyperparameters:
     warmdown_iters = int(os.environ.get("WARMDOWN_ITERS", 1200))
     warmup_steps = int(os.environ.get("WARMUP_STEPS", 20))
     train_batch_tokens = int(os.environ.get("TRAIN_BATCH_TOKENS", 524_288))
-    train_seq_len = int(os.environ.get("TRAIN_SEQ_LEN", 1024))
+    train_seq_len = int(os.environ.get("TRAIN_SEQ_LEN", 2048))
     max_wallclock_seconds = float(os.environ.get("MAX_WALLCLOCK_SECONDS", 600.0))
     qk_gain_init = float(os.environ.get("QK_GAIN_INIT", 1.5))
-    enable_torch_compile = bool(int(os.environ.get("ENABLE_TORCH_COMPILE", "1")))
-    sdp_backend = os.environ.get("SDP_BACKEND", "flash").strip().lower()
-    checkpoint_path = os.environ.get("CHECKPOINT_PATH", "").strip()
-    checkpoint_every = int(os.environ.get("CHECKPOINT_EVERY", 0))
-    resume_from_checkpoint = bool(int(os.environ.get("RESUME_FROM_CHECKPOINT", "1")))
 
     # Model shape.
     vocab_size = int(os.environ.get("VOCAB_SIZE", 1024))
@@ -78,10 +74,10 @@ class Hyperparameters:
     # Optimizer hyperparameters.
     embed_lr = float(os.environ.get("EMBED_LR", 0.6))
     head_lr = float(os.environ.get("HEAD_LR", 0.008))
-    tied_embed_lr = float(os.environ.get("TIED_EMBED_LR", 0.05))
+    tied_embed_lr = float(os.environ.get("TIED_EMBED_LR", 0.04))
     tied_embed_init_std = float(os.environ.get("TIED_EMBED_INIT_STD", 0.005))
-    matrix_lr = float(os.environ.get("MATRIX_LR", 0.04))
-    scalar_lr = float(os.environ.get("SCALAR_LR", 0.04))
+    matrix_lr = float(os.environ.get("MATRIX_LR", 0.032))
+    scalar_lr = float(os.environ.get("SCALAR_LR", 0.032))
     muon_momentum = float(os.environ.get("MUON_MOMENTUM", 0.95))
     muon_backend_steps = int(os.environ.get("MUON_BACKEND_STEPS", 5))
     muon_momentum_warmup_start = float(os.environ.get("MUON_MOMENTUM_WARMUP_START", 0.85))
@@ -90,30 +86,6 @@ class Hyperparameters:
     beta2 = float(os.environ.get("BETA2", 0.95))
     adam_eps = float(os.environ.get("ADAM_EPS", 1e-8))
     grad_clip_norm = float(os.environ.get("GRAD_CLIP_NORM", 0.0))
-
-
-def maybe_compile(obj, *, enabled: bool, **kwargs):
-    return torch.compile(obj, **kwargs) if enabled else obj
-
-
-def configure_sdp_backend(name: str) -> tuple[bool, bool, bool, bool]:
-    from torch.backends.cuda import enable_cudnn_sdp, enable_flash_sdp, enable_math_sdp, enable_mem_efficient_sdp
-
-    backend_flags = {
-        "flash": (False, True, False, False),
-        "math": (False, False, False, True),
-        "mem_efficient": (False, False, True, False),
-        "cudnn": (True, False, False, False),
-        "auto": (True, True, True, True),
-    }
-    if name not in backend_flags:
-        raise ValueError(f"Unsupported SDP_BACKEND={name!r}; expected one of {sorted(backend_flags)}")
-    cudnn_enabled, flash_enabled, mem_efficient_enabled, math_enabled = backend_flags[name]
-    enable_cudnn_sdp(cudnn_enabled)
-    enable_flash_sdp(flash_enabled)
-    enable_mem_efficient_sdp(mem_efficient_enabled)
-    enable_math_sdp(math_enabled)
-    return cudnn_enabled, flash_enabled, mem_efficient_enabled, math_enabled
 
 # -----------------------------
 # MUON OPTIMIZER 
@@ -488,18 +460,6 @@ class TokenStream:
         self.tokens = load_data_shard(self.files[self.file_idx])
         self.pos = 0
 
-    def state_dict(self) -> dict[str, int]:
-        return {"file_idx": self.file_idx, "pos": self.pos}
-
-    def load_state_dict(self, state: dict[str, int]) -> None:
-        file_idx = int(state["file_idx"]) % len(self.files)
-        pos = int(state["pos"])
-        self.file_idx = file_idx
-        self.tokens = load_data_shard(self.files[self.file_idx])
-        if not (0 <= pos <= self.tokens.numel()):
-            raise ValueError(f"TokenStream position {pos} out of range for {self.files[self.file_idx]}")
-        self.pos = pos
-
     def take(self, n: int) -> Tensor:
         chunks: list[Tensor] = []
         remaining = n
@@ -523,12 +483,6 @@ class DistributedTokenLoader:
         self.world_size = world_size
         self.device = device
         self.stream = TokenStream(pattern)
-
-    def state_dict(self) -> dict[str, dict[str, int]]:
-        return {"stream": self.stream.state_dict()}
-
-    def load_state_dict(self, state: dict[str, dict[str, int]]) -> None:
-        self.stream.load_state_dict(state["stream"])
 
     def next_batch(self, global_tokens: int, seq_len: int, grad_accum_steps: int) -> tuple[Tensor, Tensor]:
         local_tokens = global_tokens // (self.world_size * grad_accum_steps)
@@ -780,10 +734,7 @@ def main() -> None:
 
     code = Path(__file__).read_text(encoding="utf-8")
     args = Hyperparameters()
-    zeropower_via_newtonschulz5 = maybe_compile(
-        zeropower_via_newtonschulz5,
-        enabled=args.enable_torch_compile,
-    )
+    zeropower_via_newtonschulz5 = torch.compile(zeropower_via_newtonschulz5)
 
     # -----------------------------
     # DISTRIBUTED + CUDA SETUP
@@ -811,9 +762,12 @@ def main() -> None:
     # Fast math knobs
     torch.backends.cuda.matmul.allow_tf32 = True
     torch.backends.cudnn.allow_tf32 = True
-    cudnn_sdp_enabled, flash_sdp_enabled, mem_efficient_sdp_enabled, math_sdp_enabled = configure_sdp_backend(
-        args.sdp_backend
-    )
+    from torch.backends.cuda import enable_cudnn_sdp, enable_flash_sdp, enable_math_sdp, enable_mem_efficient_sdp
+
+    enable_cudnn_sdp(False)
+    enable_flash_sdp(True)
+    enable_mem_efficient_sdp(False)
+    enable_math_sdp(False)
 
     logfile = None
     if master_process:
@@ -887,7 +841,7 @@ def main() -> None:
         if isinstance(module, CastedLinear):
             module.float()
     restore_low_dim_params_to_fp32(base_model)
-    compiled_model = maybe_compile(base_model, enabled=args.enable_torch_compile, dynamic=False, fullgraph=True)
+    compiled_model = torch.compile(base_model, dynamic=False, fullgraph=True)
     model: nn.Module = DDP(compiled_model, device_ids=[local_rank], broadcast_buffers=False) if distributed else compiled_model
 
     # Optimizer split:
@@ -942,10 +896,7 @@ def main() -> None:
     n_params = sum(p.numel() for p in base_model.parameters())
     log0(f"model_params:{n_params}")
     log0(f"world_size:{world_size} grad_accum_steps:{grad_accum_steps}")
-    log0(
-        f"sdp_backends:cudnn={cudnn_sdp_enabled} flash={flash_sdp_enabled} "
-        f"mem_efficient={mem_efficient_sdp_enabled} math={math_sdp_enabled}"
-    )
+    log0("sdp_backends:cudnn=False flash=True mem_efficient=False math=False")
     log0(f"attention_mode:gqa num_heads:{args.num_heads} num_kv_heads:{args.num_kv_heads}")
     log0(
         f"tie_embeddings:{args.tie_embeddings} embed_lr:{token_lr} "
@@ -957,10 +908,6 @@ def main() -> None:
         f"iterations:{args.iterations} warmup_steps:{args.warmup_steps} "
         f"max_wallclock_seconds:{args.max_wallclock_seconds:.3f}"
     )
-    log0(
-        f"torch_compile:{args.enable_torch_compile} sdp_backend:{args.sdp_backend} "
-        f"checkpoint_every:{args.checkpoint_every} checkpoint_path:{args.checkpoint_path or '<disabled>'}"
-    )
     log0(f"seed:{args.seed}")
 
     # -----------------------------
@@ -968,56 +915,6 @@ def main() -> None:
     # -----------------------------
 
     train_loader = DistributedTokenLoader(args.train_files, rank, world_size, device)
-
-    checkpoint_path = Path(args.checkpoint_path) if args.checkpoint_path else None
-
-    def checkpoint_payload(step: int, training_time_ms: float) -> dict[str, object]:
-        return {
-            "step": step,
-            "training_time_ms": training_time_ms,
-            "model_state_dict": base_model.state_dict(),
-            "optimizer_state_dicts": [opt.state_dict() for opt in optimizers],
-            "train_loader_state": train_loader.state_dict(),
-            "python_random_state": random.getstate(),
-            "numpy_random_state": np.random.get_state(),
-            "torch_rng_state": torch.get_rng_state(),
-            "cuda_rng_state_all": torch.cuda.get_rng_state_all(),
-        }
-
-    def save_checkpoint(step: int, training_time_ms: float) -> None:
-        if checkpoint_path is None or not master_process:
-            return
-        checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
-        tmp_path = checkpoint_path.with_suffix(checkpoint_path.suffix + ".tmp")
-        torch.save(checkpoint_payload(step, training_time_ms), tmp_path)
-        os.replace(tmp_path, checkpoint_path)
-        log0(f"checkpoint_saved:path:{checkpoint_path} step:{step} train_time:{training_time_ms:.0f}ms")
-
-    step = 0
-    training_time_ms = 0.0
-    stop_after_step: int | None = None
-    resumed_from_checkpoint = False
-    if checkpoint_path is not None and checkpoint_path.is_file():
-        if args.resume_from_checkpoint:
-            if distributed:
-                dist.barrier()
-            checkpoint = torch.load(checkpoint_path, map_location="cpu")
-            base_model.load_state_dict(checkpoint["model_state_dict"], strict=True)
-            for opt, state in zip(optimizers, checkpoint["optimizer_state_dicts"], strict=True):
-                opt.load_state_dict(state)
-            train_loader.load_state_dict(checkpoint["train_loader_state"])
-            random.setstate(checkpoint["python_random_state"])
-            np.random.set_state(checkpoint["numpy_random_state"])
-            torch.set_rng_state(checkpoint["torch_rng_state"])
-            torch.cuda.set_rng_state_all(checkpoint["cuda_rng_state_all"])
-            step = int(checkpoint["step"])
-            training_time_ms = float(checkpoint.get("training_time_ms", 0.0))
-            resumed_from_checkpoint = True
-            log0(f"checkpoint_loaded:path:{checkpoint_path} step:{step} train_time:{training_time_ms:.0f}ms")
-            if distributed:
-                dist.barrier()
-        else:
-            log0(f"checkpoint_present_but_resume_disabled:path:{checkpoint_path}")
 
     def zero_grad_all() -> None:
         for opt in optimizers:
@@ -1038,7 +935,7 @@ def main() -> None:
 
     # Warmup primes the compiled forward/backward/optimizer paths, then we restore the
     # initial weights/optimizer state so measured training starts from the true init.
-    if args.warmup_steps > 0 and not resumed_from_checkpoint:
+    if args.warmup_steps > 0:
         initial_model_state = {name: tensor.detach().cpu().clone() for name, tensor in base_model.state_dict().items()}
         initial_optimizer_states = [copy.deepcopy(opt.state_dict()) for opt in optimizers]
         model.train()
@@ -1068,9 +965,12 @@ def main() -> None:
     # MAIN TRAINING LOOP
     # -----------------------------
 
+    training_time_ms = 0.0
+    stop_after_step: int | None = None
     torch.cuda.synchronize()
     t0 = time.perf_counter()
 
+    step = 0
     while True:
         last_step = step == args.iterations or (stop_after_step is not None and step >= stop_after_step)
 
@@ -1145,12 +1045,6 @@ def main() -> None:
                 f"step:{step}/{args.iterations} train_loss:{train_loss.item():.4f} "
                 f"train_time:{approx_training_time_ms:.0f}ms step_avg:{approx_training_time_ms / step:.2f}ms"
             )
-        if args.checkpoint_every > 0 and step > 0 and step % args.checkpoint_every == 0:
-            if distributed:
-                dist.barrier()
-            save_checkpoint(step, approx_training_time_ms)
-            if distributed:
-                dist.barrier()
 
         # Needed to sync whether we've reached the wallclock cap.
         reached_cap = max_wallclock_ms is not None and approx_training_time_ms >= max_wallclock_ms

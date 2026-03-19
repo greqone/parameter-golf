@@ -1,0 +1,29 @@
+{
+  "name": "proxy-sliding-window-eval",
+  "description": "Sliding-window evaluation proxy using the exact record script with experimental paths disabled.",
+  "stage": "proxy",
+  "script_path": "records/track_10min_16mb/2026-03-19_SlidingWindowEval/train_gpt.py",
+  "data_variant": "sp1024",
+  "train_shards": 1,
+  "seed": 1337,
+  "checkpoint_every": 100,
+  "env": {
+    "ITERATIONS": "3000",
+    "WARMUP_STEPS": "0",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "25",
+    "TRAIN_BATCH_TOKENS": "131072",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "45",
+    "EVAL_STRIDE": "64",
+    "EVAL_BATCH_SEQS": "256",
+    "NUM_LOOPS": "1",
+    "LORA_RANK": "0",
+    "QAT": "0"
+  },
+  "tags": [
+    "sliding-window",
+    "eval",
+    "sp1024"
+  ]
+}

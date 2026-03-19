@@ -1,0 +1,104 @@
+logs/20260319-184322-candidate-long-context-seq2048-full.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=/pg-data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:80
+val_loader:shards pattern=/pg-data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:8 grad_accum_steps:1
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.04 head_lr:0.0 matrix_lr:0.032 scalar_lr:0.032
+train_batch_tokens:524288 train_seq_len:2048 iterations:20000 warmup_steps:20 max_wallclock_seconds:600.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:1/20000 train_loss:6.9370 train_time:72ms step_avg:72.24ms
+step:2/20000 train_loss:14.7716 train_time:105ms step_avg:52.54ms
+step:3/20000 train_loss:8.1317 train_time:165ms step_avg:55.08ms
+step:4/20000 train_loss:6.6102 train_time:221ms step_avg:55.22ms
+step:5/20000 train_loss:6.8976 train_time:276ms step_avg:55.11ms
+step:6/20000 train_loss:7.6617 train_time:337ms step_avg:56.08ms
+step:7/20000 train_loss:6.6645 train_time:400ms step_avg:57.10ms
+step:8/20000 train_loss:6.3882 train_time:453ms step_avg:56.66ms
+step:9/20000 train_loss:6.2242 train_time:510ms step_avg:56.61ms
+step:10/20000 train_loss:6.1403 train_time:564ms step_avg:56.43ms
+step:200/20000 train_loss:2.7683 train_time:11743ms step_avg:58.72ms
+step:400/20000 train_loss:2.3010 train_time:22969ms step_avg:57.42ms
+step:600/20000 train_loss:2.4947 train_time:34253ms step_avg:57.09ms
+step:800/20000 train_loss:2.2426 train_time:45465ms step_avg:56.83ms
+step:1000/20000 train_loss:2.3327 train_time:56696ms step_avg:56.70ms
+step:1200/20000 train_loss:2.3552 train_time:67905ms step_avg:56.59ms
+step:1400/20000 train_loss:2.3810 train_time:79146ms step_avg:56.53ms
+step:1600/20000 train_loss:2.0452 train_time:90658ms step_avg:56.66ms
+step:1800/20000 train_loss:2.1606 train_time:101895ms step_avg:56.61ms
+step:2000/20000 train_loss:2.2119 train_time:113173ms step_avg:56.59ms
+step:2200/20000 train_loss:2.0347 train_time:124404ms step_avg:56.55ms
+step:2400/20000 train_loss:2.1643 train_time:135596ms step_avg:56.50ms
+step:2600/20000 train_loss:2.3833 train_time:146785ms step_avg:56.46ms
+step:2800/20000 train_loss:2.1936 train_time:157970ms step_avg:56.42ms
+step:3000/20000 train_loss:2.1898 train_time:169203ms step_avg:56.40ms
+step:3200/20000 train_loss:2.1517 train_time:180427ms step_avg:56.38ms
+step:3400/20000 train_loss:2.1214 train_time:191669ms step_avg:56.37ms
+step:3600/20000 train_loss:2.0636 train_time:202839ms step_avg:56.34ms
+step:3800/20000 train_loss:2.1721 train_time:214063ms step_avg:56.33ms
+step:4000/20000 train_loss:2.1354 train_time:225330ms step_avg:56.33ms
+step:4200/20000 train_loss:2.1310 train_time:236640ms step_avg:56.34ms
+step:4400/20000 train_loss:2.0678 train_time:247838ms step_avg:56.33ms
+step:4600/20000 train_loss:1.9360 train_time:259079ms step_avg:56.32ms
+step:4800/20000 train_loss:2.2202 train_time:270321ms step_avg:56.32ms
+step:5000/20000 train_loss:1.9775 train_time:281506ms step_avg:56.30ms
+step:5200/20000 train_loss:2.1317 train_time:292746ms step_avg:56.30ms
+step:5400/20000 train_loss:2.1508 train_time:303954ms step_avg:56.29ms
+step:5600/20000 train_loss:2.1400 train_time:315160ms step_avg:56.28ms
+step:5800/20000 train_loss:2.0940 train_time:326396ms step_avg:56.28ms
+step:6000/20000 train_loss:2.1759 train_time:337591ms step_avg:56.27ms
+step:6200/20000 train_loss:2.0507 train_time:348776ms step_avg:56.25ms
+step:6400/20000 train_loss:2.1247 train_time:359952ms step_avg:56.24ms
+step:6600/20000 train_loss:2.0822 train_time:371175ms step_avg:56.24ms
+step:6800/20000 train_loss:2.1444 train_time:382354ms step_avg:56.23ms
+step:7000/20000 train_loss:2.1909 train_time:393543ms step_avg:56.22ms
+step:7200/20000 train_loss:2.1644 train_time:404766ms step_avg:56.22ms
+step:7400/20000 train_loss:2.0868 train_time:415969ms step_avg:56.21ms
+step:7600/20000 train_loss:1.9631 train_time:427212ms step_avg:56.21ms
+step:7800/20000 train_loss:2.1060 train_time:438419ms step_avg:56.21ms
+step:8000/20000 train_loss:2.0783 train_time:449615ms step_avg:56.20ms
+step:8200/20000 train_loss:2.1502 train_time:460809ms step_avg:56.20ms
+step:8400/20000 train_loss:2.0945 train_time:472184ms step_avg:56.21ms
+step:8600/20000 train_loss:2.1079 train_time:483405ms step_avg:56.21ms
+step:8800/20000 train_loss:2.0673 train_time:494652ms step_avg:56.21ms
+step:9000/20000 train_loss:1.9866 train_time:505854ms step_avg:56.21ms
+step:9200/20000 train_loss:2.0465 train_time:517075ms step_avg:56.20ms
+step:9400/20000 train_loss:2.0936 train_time:528306ms step_avg:56.20ms
+step:9600/20000 train_loss:2.1118 train_time:539501ms step_avg:56.20ms
+step:9800/20000 train_loss:2.0137 train_time:550744ms step_avg:56.20ms
+step:10000/20000 train_loss:2.0567 train_time:561936ms step_avg:56.19ms
+step:10200/20000 train_loss:2.0115 train_time:573148ms step_avg:56.19ms
+step:10400/20000 train_loss:2.0253 train_time:584388ms step_avg:56.19ms
+step:10600/20000 train_loss:1.9075 train_time:595547ms step_avg:56.18ms
+step:10681/20000 val_loss:2.0310 val_bpb:1.2029 train_time:600199ms step_avg:56.19ms
+stopping_early: wallclock_cap train_time:600199ms step:10681/20000
+peak memory allocated: 10137 MiB reserved: 10400 MiB
+Serialized model: 67224983 bytes
+Code size: 47716 bytes
+Total submission size: 67272699 bytes
+Serialized model int8+zlib: 15809089 bytes (payload:17178912 raw_torch:17224025 payload_ratio:3.91x)
+Total submission size int8+zlib: 15856805 bytes
+final_int8_zlib_roundtrip val_loss:2.0393 val_bpb:1.2078 eval_time:1336ms
+final_int8_zlib_roundtrip_exact val_loss:2.03933200 val_bpb:1.20780728

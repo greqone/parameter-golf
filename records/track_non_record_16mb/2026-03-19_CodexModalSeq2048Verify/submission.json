@@ -1,0 +1,11 @@
+{
+  "author": "GreQ + Codex",
+  "github_id": "GreQ",
+  "name": "Codex Modal Seq2048 Verify",
+  "blurb": "Modal-based reproduction of the standalone seq2048 candidate, including a B200+:8 promotion run and an H100!:8 benchmark-faithful verification run executed from this workspace.",
+  "date": "2026-03-19T19:25:11Z",
+  "val_loss": 2.04680455,
+  "val_bpb": 1.21223295,
+  "bytes_total": 15854022,
+  "bytes_code": 47716
+}
