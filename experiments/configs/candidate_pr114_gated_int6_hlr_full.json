@@ -1,0 +1,38 @@
+{
+  "name": "candidate-pr114-gated-int6-hlr-full",
+  "description": "PR114 baseline plus query-dependent SDPA output gating, with a moderately higher LR per the gated-attention paper.",
+  "stage": "verify",
+  "script_path": "experiments/custom_trainers/train_gpt_pr114_gated_int6.py",
+  "data_variant": "sp1024",
+  "train_shards": 80,
+  "seed": 1337,
+  "checkpoint_every": 500,
+  "env": {
+    "ITERATIONS": "20000",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "200",
+    "TRAIN_BATCH_TOKENS": "786432",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "600",
+    "TRAIN_SEQ_LEN": "2048",
+    "EVAL_SEQ_LEN": "2048",
+    "EVAL_STRIDE": "256",
+    "MLP_HIDDEN": "1536",
+    "MATRIX_LR": "0.024",
+    "SCALAR_LR": "0.024",
+    "TIED_EMBED_LR": "0.03",
+    "MUON_MOMENTUM": "0.99",
+    "MUON_MOMENTUM_WARMUP_START": "0.92",
+    "MUON_MOMENTUM_WARMUP_STEPS": "1500",
+    "WARMDOWN_ITERS": "3000",
+    "GRAD_CLIP_NORM": "0.3"
+  },
+  "tags": [
+    "hybrid",
+    "pr114",
+    "gated-attention",
+    "int6",
+    "verify",
+    "seq2048"
+  ]
+}

@@ -14,6 +14,19 @@
       "wallclock_seconds": 1099.994
     },
     {
+      "commit": "13375e9750c38b045ef89635fe36acb1028d6c21",
+      "description": "Novel PR114-based candidate combining int6 selective precision with tied-depth looping and per-loop attention LoRA.",
+      "final_exact_val_bpb": 1.20480548,
+      "final_exact_val_loss": 2.03426359,
+      "gpu_count": 8,
+      "gpu_type": "H100!",
+      "name": "candidate-pr114-looped-int6-full",
+      "run_id": "20260319-224055-candidate-pr114-looped-int6-full",
+      "runtime": "modal:verify",
+      "stage": "verify",
+      "wallclock_seconds": 1346.689
+    },
+    {
       "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
       "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
       "final_exact_val_bpb": 1.20780728,
@@ -79,6 +92,19 @@
       "wallclock_seconds": 1065.271
     },
     {
+      "commit": "13375e9750c38b045ef89635fe36acb1028d6c21",
+      "description": "Cheap smoke for the PR114-based hybrid with tied-depth looping and per-loop attention LoRA.",
+      "final_exact_val_bpb": 6.84680119,
+      "final_exact_val_loss": 11.56053701,
+      "gpu_count": 1,
+      "gpu_type": "H100",
+      "name": "proxy-pr114-looped-int6-smoke",
+      "run_id": "20260319-222854-proxy-pr114-looped-int6-smoke",
+      "runtime": "modal:proxy",
+      "stage": "proxy",
+      "wallclock_seconds": 331.642
+    },
+    {
       "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
       "description": "Proxy reproduction of PR #114 to establish a live-frontier baseline on our Modal stack.",
       "final_exact_val_bpb": 7.32398324,
@@ -90,19 +116,6 @@
       "runtime": "modal:proxy",
       "stage": "proxy",
       "wallclock_seconds": 1253.48
-    },
-    {
-      "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
-      "description": "Proxy reproduction of PR #128 to benchmark the int6 QAT + seq4096 stack against PR #114.",
-      "final_exact_val_bpb": 7.39654605,
-      "final_exact_val_loss": 12.48869101,
-      "gpu_count": 1,
-      "gpu_type": "H100",
-      "name": "proxy-pr128-int6-qat-sliding4096",
-      "run_id": "20260319-212046-proxy-pr128-int6-qat-sliding4096",
-      "runtime": "modal:proxy",
-      "stage": "proxy",
-      "wallclock_seconds": 1490.725
     }
   ],
   "by_stage": {
@@ -162,6 +175,19 @@
         "wallclock_seconds": 1065.271
       },
       {
+        "commit": "13375e9750c38b045ef89635fe36acb1028d6c21",
+        "description": "Cheap smoke for the PR114-based hybrid with tied-depth looping and per-loop attention LoRA.",
+        "final_exact_val_bpb": 6.84680119,
+        "final_exact_val_loss": 11.56053701,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-pr114-looped-int6-smoke",
+        "run_id": "20260319-222854-proxy-pr114-looped-int6-smoke",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 331.642
+      },
+      {
         "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
         "description": "Proxy reproduction of PR #114 to establish a live-frontier baseline on our Modal stack.",
         "final_exact_val_bpb": 7.32398324,
@@ -173,19 +199,6 @@
         "runtime": "modal:proxy",
         "stage": "proxy",
         "wallclock_seconds": 1253.48
-      },
-      {
-        "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
-        "description": "Proxy reproduction of PR #128 to benchmark the int6 QAT + seq4096 stack against PR #114.",
-        "final_exact_val_bpb": 7.39654605,
-        "final_exact_val_loss": 12.48869101,
-        "gpu_count": 1,
-        "gpu_type": "H100",
-        "name": "proxy-pr128-int6-qat-sliding4096",
-        "run_id": "20260319-212046-proxy-pr128-int6-qat-sliding4096",
-        "runtime": "modal:proxy",
-        "stage": "proxy",
-        "wallclock_seconds": 1490.725
       }
     ],
     "verify": [
@@ -203,6 +216,19 @@
         "wallclock_seconds": 1099.994
       },
       {
+        "commit": "13375e9750c38b045ef89635fe36acb1028d6c21",
+        "description": "Novel PR114-based candidate combining int6 selective precision with tied-depth looping and per-loop attention LoRA.",
+        "final_exact_val_bpb": 1.20480548,
+        "final_exact_val_loss": 2.03426359,
+        "gpu_count": 8,
+        "gpu_type": "H100!",
+        "name": "candidate-pr114-looped-int6-full",
+        "run_id": "20260319-224055-candidate-pr114-looped-int6-full",
+        "runtime": "modal:verify",
+        "stage": "verify",
+        "wallclock_seconds": 1346.689
+      },
+      {
         "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
         "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
         "final_exact_val_bpb": 1.21223295,
@@ -217,5 +243,5 @@
       }
     ]
   },
-  "updated_at": "2026-03-19T22:22:25+00:00"
+  "updated_at": "2026-03-19T23:06:21+00:00"
 }
