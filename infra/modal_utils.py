@@ -308,6 +308,58 @@ def download_challenge_data(
     }
 
 
+def prepare_dataset_view(
+    *,
+    source_data_path: Path,
+    target_root: Path,
+    dataset_name: str,
+    train_shards: int,
+) -> Path:
+    if train_shards <= 0:
+        return source_data_path
+
+    source_train_files = sorted(source_data_path.glob("fineweb_train_*.bin"))
+    source_val_files = sorted(source_data_path.glob("fineweb_val_*.bin"))
+    if len(source_train_files) < train_shards:
+        raise ValueError(
+            f"{source_data_path} exposes {len(source_train_files)} train shards, requested {train_shards}"
+        )
+
+    view_path = target_root / "views" / f"{dataset_name}_train{train_shards:03d}"
+    marker_path = view_path / ".ready"
+    desired_names = {path.name for path in source_train_files[:train_shards]}
+    desired_names.update(path.name for path in source_val_files)
+    if marker_path.exists():
+        existing_names = {path.name for path in view_path.glob("*.bin")}
+        if existing_names == desired_names:
+            return view_path
+
+    view_path.mkdir(parents=True, exist_ok=True)
+    for path in view_path.glob("*.bin"):
+        if path.name not in desired_names:
+            path.unlink()
+
+    def link_into_view(source_path: Path) -> None:
+        target_path = view_path / source_path.name
+        if target_path.exists():
+            return
+        try:
+            os.link(source_path, target_path)
+        except OSError:
+            try:
+                os.symlink(source_path, target_path)
+            except OSError:
+                shutil.copy2(source_path, target_path)
+
+    for source_path in source_train_files[:train_shards]:
+        link_into_view(source_path)
+    for source_path in source_val_files:
+        link_into_view(source_path)
+
+    marker_path.write_text(json.dumps({"dataset_name": dataset_name, "train_shards": train_shards}) + "\n", encoding="utf-8")
+    return view_path
+
+
 def _extract_last_match(pattern: str, text: str) -> re.Match[str] | None:
     matches = list(re.finditer(pattern, text, flags=re.MULTILINE))
     return matches[-1] if matches else None
@@ -356,7 +408,10 @@ def parse_train_metrics(log_text: str) -> dict[str, Any]:
     if train_time_match is not None:
         metrics["logged_train_time_ms"] = int(float(train_time_match.group("ms")))
 
-    step_match = _extract_last_match(r"step:(?P<step>\d+)/(?P<iterations>\d+)", log_text)
+    step_match = _extract_last_match(
+        r"(?:stopping_early:[^\n]* )?step:(?P<step>\d+)/(?P<iterations>\d+)",
+        log_text,
+    )
     if step_match is not None:
         metrics["step"] = int(step_match.group("step"))
         metrics["iterations"] = int(step_match.group("iterations"))
@@ -433,6 +488,12 @@ def execute_training_run(
         variant=spec.data_variant,
         train_shards=spec.train_shards,
     )
+    data_path = prepare_dataset_view(
+        source_data_path=Path(artifacts["data_path"]),
+        target_root=data_root,
+        dataset_name=str(artifacts["dataset_name"]),
+        train_shards=spec.train_shards,
+    )
     python_exe = python_executable or default_python_executable(repo_root)
     torchrun_exe = torchrun_executable or default_torchrun_executable(repo_root)
     env = os.environ.copy()
@@ -440,7 +501,7 @@ def execute_training_run(
         {
             "PYTHONUNBUFFERED": "1",
             "RUN_ID": spec.run_id,
-            "DATA_PATH": artifacts["data_path"],
+            "DATA_PATH": str(data_path),
             "TOKENIZER_PATH": artifacts["tokenizer_model_path"],
             "VOCAB_SIZE": str(artifacts["vocab_size"]),
             "SEED": str(spec.seed),

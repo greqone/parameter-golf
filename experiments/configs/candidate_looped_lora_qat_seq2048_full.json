@@ -1,0 +1,42 @@
+{
+  "name": "candidate-looped-lora-qat-seq2048-full",
+  "description": "Full 8-GPU novel candidate using tied-depth recurrence, per-loop attention LoRA adapters, QAT, and seq2048 training.",
+  "stage": "promote",
+  "script_path": "records/track_10min_16mb/2026-03-19_SlidingWindowEval/train_gpt.py",
+  "data_variant": "sp1024",
+  "train_shards": 80,
+  "seed": 1337,
+  "checkpoint_every": 500,
+  "env": {
+    "ITERATIONS": "20000",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "200",
+    "TRAIN_BATCH_TOKENS": "393216",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "600",
+    "NUM_LAYERS": "6",
+    "NUM_LOOPS": "2",
+    "LORA_RANK": "8",
+    "QAT": "1",
+    "MLP_MULT": "3",
+    "TRAIN_SEQ_LEN": "2048",
+    "EVAL_STRIDE": "128",
+    "EVAL_BATCH_SEQS": "256",
+    "MATRIX_LR": "0.02",
+    "SCALAR_LR": "0.02",
+    "TIED_EMBED_LR": "0.03",
+    "MUON_MOMENTUM": "0.99",
+    "MUON_MOMENTUM_WARMUP_START": "0.92",
+    "MUON_MOMENTUM_WARMUP_STEPS": "1000",
+    "WARMDOWN_ITERS": "3000",
+    "GRAD_CLIP_NORM": "0.3"
+  },
+  "tags": [
+    "novel",
+    "promotion",
+    "loops",
+    "lora",
+    "qat",
+    "seq2048"
+  ]
+}
