@@ -1,0 +1,34 @@
+{
+  "name": "candidate-pr128-int6-qat-sliding4096-full",
+  "description": "Full 8-GPU reproduction of PR #128 with int6 STE QAT and seq4096 sliding-window evaluation.",
+  "stage": "promote",
+  "script_path": "experiments/external_prs/128/train_gpt.py",
+  "data_variant": "sp1024",
+  "train_shards": 80,
+  "seed": 1337,
+  "checkpoint_every": 500,
+  "env": {
+    "ITERATIONS": "20000",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "200",
+    "TRAIN_BATCH_TOKENS": "393216",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "600",
+    "TRAIN_SEQ_LEN": "4096",
+    "EVAL_STRIDE": "64",
+    "MLP_MULT": "3.0",
+    "MATRIX_LR": "0.02",
+    "SCALAR_LR": "0.02",
+    "TIED_EMBED_LR": "0.03",
+    "MUON_MOMENTUM": "0.99",
+    "WARMDOWN_ITERS": "3000"
+  },
+  "tags": [
+    "frontier",
+    "pr128",
+    "promotion",
+    "int6",
+    "qat",
+    "seq4096"
+  ]
+}

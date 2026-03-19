@@ -326,14 +326,14 @@ def parse_train_metrics(log_text: str) -> dict[str, Any]:
         "iterations": None,
     }
     exact_match = _extract_last_match(
-        r"final_int8_zlib_roundtrip_exact val_loss:(?P<loss>[0-9.]+) val_bpb:(?P<bpb>[0-9.]+)",
+        r"final[^\n]*?_exact[^\n]*?val_loss:(?P<loss>[0-9.]+) val_bpb:(?P<bpb>[0-9.]+)",
         log_text,
     )
     if exact_match is not None:
         metrics["final_exact_val_loss"] = float(exact_match.group("loss"))
         metrics["final_exact_val_bpb"] = float(exact_match.group("bpb"))
 
-    compressed_match = _extract_last_match(r"Serialized model int8\+zlib: (?P<bytes>\d+) bytes", log_text)
+    compressed_match = _extract_last_match(r"Serialized model[^\n]*: (?P<bytes>\d+) bytes", log_text)
     if compressed_match is not None:
         metrics["compressed_bytes"] = int(compressed_match.group("bytes"))
 
@@ -341,7 +341,7 @@ def parse_train_metrics(log_text: str) -> dict[str, Any]:
     if code_match is not None:
         metrics["code_bytes"] = int(code_match.group("bytes"))
 
-    total_match = _extract_last_match(r"Total submission size int8\+zlib: (?P<bytes>\d+) bytes", log_text)
+    total_match = _extract_last_match(r"Total submission size[^\n]*: (?P<bytes>\d+) bytes", log_text)
     if total_match is not None:
         metrics["total_bytes"] = int(total_match.group("bytes"))
 

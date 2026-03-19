@@ -1,0 +1,34 @@
+{
+  "name": "proxy-pr128-int6-qat-sliding4096",
+  "description": "Proxy reproduction of PR #128 to benchmark the int6 QAT + seq4096 stack against PR #114.",
+  "stage": "proxy",
+  "script_path": "experiments/external_prs/128/train_gpt.py",
+  "data_variant": "sp1024",
+  "train_shards": 1,
+  "seed": 1337,
+  "checkpoint_every": 0,
+  "env": {
+    "ITERATIONS": "3000",
+    "WARMUP_STEPS": "0",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "25",
+    "TRAIN_BATCH_TOKENS": "131072",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "90",
+    "TRAIN_SEQ_LEN": "4096",
+    "EVAL_STRIDE": "64",
+    "MLP_MULT": "3.0",
+    "MATRIX_LR": "0.02",
+    "SCALAR_LR": "0.02",
+    "TIED_EMBED_LR": "0.03",
+    "MUON_MOMENTUM": "0.99",
+    "WARMDOWN_ITERS": "3000"
+  },
+  "tags": [
+    "frontier",
+    "pr128",
+    "int6",
+    "qat",
+    "seq4096"
+  ]
+}
