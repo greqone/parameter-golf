@@ -53,17 +53,17 @@
       "wallclock_seconds": 1099.994
     },
     {
-      "commit": "13375e9750c38b045ef89635fe36acb1028d6c21",
-      "description": "Novel PR114-based candidate combining int6 selective precision with tied-depth looping and per-loop attention LoRA.",
-      "final_exact_val_bpb": 1.20480548,
-      "final_exact_val_loss": 2.03426359,
+      "commit": "a208d5f566fd6b72d6d306f30d98cec90f88a082",
+      "description": "Full 8-GPU verification of the PR #135 recipe with a slimmer 1280-hidden MLP to target the 16 MB bound.",
+      "final_exact_val_bpb": 1.16883654,
+      "final_exact_val_loss": 1.97352608,
       "gpu_count": 8,
       "gpu_type": "H100!",
-      "name": "candidate-pr114-looped-int6-full",
-      "run_id": "20260319-224055-candidate-pr114-looped-int6-full",
+      "name": "candidate-pr135-mlp1280-full",
+      "run_id": "20260320-002710-candidate-pr135-mlp1280-full",
       "runtime": "modal:verify",
       "stage": "verify",
-      "wallclock_seconds": 1346.689
+      "wallclock_seconds": 1103.482
     },
     {
       "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
@@ -268,19 +268,19 @@
         "wallclock_seconds": 1099.994
       },
       {
-        "commit": "13375e9750c38b045ef89635fe36acb1028d6c21",
-        "description": "Novel PR114-based candidate combining int6 selective precision with tied-depth looping and per-loop attention LoRA.",
-        "final_exact_val_bpb": 1.20480548,
-        "final_exact_val_loss": 2.03426359,
+        "commit": "a208d5f566fd6b72d6d306f30d98cec90f88a082",
+        "description": "Full 8-GPU verification of the PR #135 recipe with a slimmer 1280-hidden MLP to target the 16 MB bound.",
+        "final_exact_val_bpb": 1.16883654,
+        "final_exact_val_loss": 1.97352608,
         "gpu_count": 8,
         "gpu_type": "H100!",
-        "name": "candidate-pr114-looped-int6-full",
-        "run_id": "20260319-224055-candidate-pr114-looped-int6-full",
+        "name": "candidate-pr135-mlp1280-full",
+        "run_id": "20260320-002710-candidate-pr135-mlp1280-full",
         "runtime": "modal:verify",
         "stage": "verify",
-        "wallclock_seconds": 1346.689
+        "wallclock_seconds": 1103.482
       }
     ]
   },
-  "updated_at": "2026-03-20T00:25:47+00:00"
+  "updated_at": "2026-03-20T00:48:27+00:00"
 }
