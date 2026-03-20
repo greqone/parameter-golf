@@ -16,6 +16,7 @@ from __future__ import annotations
 import importlib.util
 import math
 import os
+import sys
 from pathlib import Path
 
 import torch
@@ -28,6 +29,7 @@ SPEC = importlib.util.spec_from_file_location("pr135_base", BASE_PATH)
 if SPEC is None or SPEC.loader is None:
     raise ImportError(f"Unable to load base trainer from {BASE_PATH}")
 base = importlib.util.module_from_spec(SPEC)
+sys.modules[SPEC.name] = base
 SPEC.loader.exec_module(base)
 
 
