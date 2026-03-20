@@ -105,30 +105,30 @@
       "wallclock_seconds": 207.361
     },
     {
-      "commit": "ee0f58b7d97321eb809ececfcc2831fcef67b7de",
-      "description": "Proxy sweep for conditioned loops plus tiny per-loop low-rank attention deltas.",
-      "final_exact_val_bpb": 6.62227608,
-      "final_exact_val_loss": 11.18143576,
+      "commit": "3939106a855dae252c01e17172d154996f04efd3",
+      "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 15% structured export pruning.",
+      "final_exact_val_bpb": 4.95635544,
+      "final_exact_val_loss": 8.36857538,
       "gpu_count": 1,
       "gpu_type": "H100",
-      "name": "proxy-pr114-looped-timestep-int6-lora2",
-      "run_id": "20260320-025612-proxy-pr114-looped-timestep-int6-lora2",
+      "name": "proxy-pr135-ffn-prune-p015-bigram96",
+      "run_id": "20260320-034920-proxy-pr135-ffn-prune-p015-bigram96",
       "runtime": "modal:proxy",
       "stage": "proxy",
-      "wallclock_seconds": 317.895
+      "wallclock_seconds": 1376.572
     },
     {
-      "commit": "c862f9cc492a1f873fb912cc2175055dc87101d3",
-      "description": "Cheap smoke for a PR114-derived looped model with explicit timestep conditioning and per-loop residual scaling.",
-      "final_exact_val_bpb": 6.79338389,
-      "final_exact_val_loss": 11.47034413,
+      "commit": "3939106a855dae252c01e17172d154996f04efd3",
+      "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 20% structured export pruning.",
+      "final_exact_val_bpb": 4.95863944,
+      "final_exact_val_loss": 8.37243181,
       "gpu_count": 1,
       "gpu_type": "H100",
-      "name": "proxy-pr114-looped-timestep-int6-smoke",
-      "run_id": "20260320-024748-proxy-pr114-looped-timestep-int6-smoke",
+      "name": "proxy-pr135-ffn-prune-p020-bigram96",
+      "run_id": "20260320-034920-proxy-pr135-ffn-prune-p020-bigram96",
       "runtime": "modal:proxy",
       "stage": "proxy",
-      "wallclock_seconds": 243.023
+      "wallclock_seconds": 1436.504
     }
   ],
   "by_stage": {
@@ -175,6 +175,32 @@
         "wallclock_seconds": 207.361
       },
       {
+        "commit": "3939106a855dae252c01e17172d154996f04efd3",
+        "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 15% structured export pruning.",
+        "final_exact_val_bpb": 4.95635544,
+        "final_exact_val_loss": 8.36857538,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-pr135-ffn-prune-p015-bigram96",
+        "run_id": "20260320-034920-proxy-pr135-ffn-prune-p015-bigram96",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 1376.572
+      },
+      {
+        "commit": "3939106a855dae252c01e17172d154996f04efd3",
+        "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 20% structured export pruning.",
+        "final_exact_val_bpb": 4.95863944,
+        "final_exact_val_loss": 8.37243181,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-pr135-ffn-prune-p020-bigram96",
+        "run_id": "20260320-034920-proxy-pr135-ffn-prune-p020-bigram96",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 1436.504
+      },
+      {
         "commit": "ee0f58b7d97321eb809ececfcc2831fcef67b7de",
         "description": "Proxy sweep for conditioned loops plus tiny per-loop low-rank attention deltas.",
         "final_exact_val_bpb": 6.62227608,
@@ -186,32 +212,6 @@
         "runtime": "modal:proxy",
         "stage": "proxy",
         "wallclock_seconds": 317.895
-      },
-      {
-        "commit": "c862f9cc492a1f873fb912cc2175055dc87101d3",
-        "description": "Cheap smoke for a PR114-derived looped model with explicit timestep conditioning and per-loop residual scaling.",
-        "final_exact_val_bpb": 6.79338389,
-        "final_exact_val_loss": 11.47034413,
-        "gpu_count": 1,
-        "gpu_type": "H100",
-        "name": "proxy-pr114-looped-timestep-int6-smoke",
-        "run_id": "20260320-024748-proxy-pr114-looped-timestep-int6-smoke",
-        "runtime": "modal:proxy",
-        "stage": "proxy",
-        "wallclock_seconds": 243.023
-      },
-      {
-        "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
-        "description": "Novel proxy activating tied-depth recurrence and per-loop attention LoRA adapters with QAT and seq2048 training.",
-        "final_exact_val_bpb": 6.82659185,
-        "final_exact_val_loss": 11.52639973,
-        "gpu_count": 1,
-        "gpu_type": "H100",
-        "name": "proxy-looped-lora-qat-seq2048",
-        "run_id": "20260319-212046-proxy-looped-lora-qat-seq2048",
-        "runtime": "modal:proxy",
-        "stage": "proxy",
-        "wallclock_seconds": 1065.271
       }
     ],
     "verify": [
@@ -282,5 +282,5 @@
       }
     ]
   },
-  "updated_at": "2026-03-20T03:33:26+00:00"
+  "updated_at": "2026-03-20T04:15:44+00:00"
 }
