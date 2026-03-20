@@ -120,6 +120,22 @@ def main() -> None:
 
     torch.cuda.synchronize()
     t0 = time.perf_counter()
+    roundtrip_val_loss, roundtrip_val_bpb = base.eval_val(
+        args,
+        model,
+        rank,
+        world_size,
+        device,
+        1,
+        val_tokens,
+        base_bytes_lut,
+        has_leading_space_lut,
+        is_boundary_token_lut,
+    )
+    torch.cuda.synchronize()
+    roundtrip_elapsed_ms = 1000.0 * (time.perf_counter() - t0)
+
+    t0 = time.perf_counter()
     sw_val_loss, sw_val_bpb = base.eval_val_sliding(
         args,
         model,
@@ -136,6 +152,14 @@ def main() -> None:
 
     if master_process:
         print(f"artifact_codec:{codec}")
+        print(
+            f"eval_saved_int6_roundtrip val_loss:{roundtrip_val_loss:.4f} "
+            f"val_bpb:{roundtrip_val_bpb:.4f} eval_time:{roundtrip_elapsed_ms:.0f}ms"
+        )
+        print(
+            f"eval_saved_int6_roundtrip_exact val_loss:{roundtrip_val_loss:.8f} "
+            f"val_bpb:{roundtrip_val_bpb:.8f}"
+        )
         print(
             f"eval_saved_int6_sliding_window stride:{args.eval_stride} "
             f"val_loss:{sw_val_loss:.4f} val_bpb:{sw_val_bpb:.4f} eval_time:{elapsed_ms:.0f}ms"

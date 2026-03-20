@@ -1,0 +1,33 @@
+{
+  "provider": "runpod",
+  "pod_id": "d7pl0wj4of5vmr",
+  "template_id": "y5cejece4j",
+  "location": "US-CA-2",
+  "status": "ok",
+  "notes": "Repeat rerun of the strongest seed on the same stable H100 SXM pod to estimate inter-run variance, with cached data and a venv-native zstd path.",
+  "candidate_config": "experiments/configs/candidate_pr135_qscale_mlp1376_bigram128_nofp16_stride16_full.json",
+  "script_path": "experiments/custom_trainers/train_gpt_pr135_qscale_int6.py",
+  "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
+  "run_id": "runpod-verify-20260320b-seed1337r1",
+  "seed": 1337,
+  "gpu_type": "H100-SXM-RunPod",
+  "gpu_count": 8,
+  "train_shards": 80,
+  "logged_train_time_ms": 600060,
+  "wallclock_seconds": 1132.174,
+  "step": 7526,
+  "iterations": 20000,
+  "peak_memory_mib": 16610,
+  "roundtrip_exact_val_loss": 1.99660347,
+  "roundtrip_exact_val_bpb": 1.18250104,
+  "final_exact_val_loss": 1.96087605,
+  "final_exact_val_bpb": 1.16134475,
+  "compressed_bytes": 15816799,
+  "code_bytes": 63056,
+  "total_bytes": 15879855,
+  "artifacts": [
+    "final_model.int6.ptz",
+    "runpod-verify-20260320b-seed1337r1.txt",
+    "runpod_verify_seed1337r1.log"
+  ]
+}

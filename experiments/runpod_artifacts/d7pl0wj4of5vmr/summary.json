@@ -1,0 +1,33 @@
+{
+  "provider": "runpod",
+  "pod_id": "d7pl0wj4of5vmr",
+  "template_id": "y5cejece4j",
+  "location": "US-CA-2",
+  "status": "ok",
+  "notes": "Clean H100 SXM rerun using the exact qscale stride-16 candidate, with a venv-native zstd path and a stable pod.",
+  "candidate_config": "experiments/configs/candidate_pr135_qscale_mlp1376_bigram128_nofp16_stride16_full.json",
+  "script_path": "experiments/custom_trainers/train_gpt_pr135_qscale_int6.py",
+  "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
+  "run_id": "runpod-verify-20260320b",
+  "seed": 1337,
+  "gpu_type": "H100-SXM-RunPod",
+  "gpu_count": 8,
+  "train_shards": 80,
+  "logged_train_time_ms": 600093,
+  "wallclock_seconds": 1133.618,
+  "step": 7430,
+  "iterations": 20000,
+  "peak_memory_mib": 16625,
+  "roundtrip_exact_val_loss": 1.99675128,
+  "roundtrip_exact_val_bpb": 1.18258858,
+  "final_exact_val_loss": 1.96093972,
+  "final_exact_val_bpb": 1.16138246,
+  "compressed_bytes": 15807326,
+  "code_bytes": 63056,
+  "total_bytes": 15870382,
+  "artifacts": [
+    "final_model.int6.ptz",
+    "runpod-verify-20260320b.txt",
+    "runpod_verify_20260320b.log"
+  ]
+}

@@ -14,6 +14,32 @@
       "wallclock_seconds": 1174.478
     },
     {
+      "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
+      "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, no fp16 passthrough, and denser stride-16 sliding eval. Repeat RunPod H100 SXM rerun of the strongest seed to estimate inter-run variance.",
+      "final_exact_val_bpb": 1.16134475,
+      "final_exact_val_loss": 1.96087605,
+      "gpu_count": 8,
+      "gpu_type": "H100-SXM-RunPod",
+      "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
+      "run_id": "runpod-verify-20260320b-seed1337r1",
+      "runtime": "runpod:verify",
+      "stage": "verify",
+      "wallclock_seconds": 1132.174
+    },
+    {
+      "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
+      "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, no fp16 passthrough, and denser stride-16 sliding eval. Clean RunPod H100 SXM rerun with venv-native zstd compression.",
+      "final_exact_val_bpb": 1.16138246,
+      "final_exact_val_loss": 1.96093972,
+      "gpu_count": 8,
+      "gpu_type": "H100-SXM-RunPod",
+      "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
+      "run_id": "runpod-verify-20260320b",
+      "runtime": "runpod:verify",
+      "stage": "verify",
+      "wallclock_seconds": 1133.618
+    },
+    {
       "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
       "description": "Full 8-GPU verification of PR #135 OrthoInit + Int6 MLP3x + BigramHash + SmearGate recipe.",
       "final_exact_val_bpb": 1.16202478,
@@ -27,43 +53,17 @@
       "wallclock_seconds": 1195.598
     },
     {
-      "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
-      "description": "PR114 baseline plus query-dependent SDPA output gating, with a moderately higher LR per the gated-attention paper.",
-      "final_exact_val_bpb": 1.16306306,
-      "final_exact_val_loss": 1.96378327,
+      "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
+      "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, no fp16 passthrough, and denser stride-16 sliding eval. Second clean RunPod H100 SXM rerun with cached data and venv-native zstd compression.",
+      "final_exact_val_bpb": 1.16238551,
+      "final_exact_val_loss": 1.96263331,
       "gpu_count": 8,
-      "gpu_type": "H100!",
-      "name": "candidate-pr114-gated-int6-hlr-full",
-      "run_id": "20260319-230757-candidate-pr114-gated-int6-hlr-full",
-      "runtime": "modal:verify",
+      "gpu_type": "H100-SXM-RunPod",
+      "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
+      "run_id": "runpod-verify-20260320b-seed1338",
+      "runtime": "runpod:verify",
       "stage": "verify",
-      "wallclock_seconds": 1191.795
-    },
-    {
-      "commit": "55afb97d969239f7184064118af9daf2271dbba4",
-      "description": "PR #135 family with MLP 1408, reduced fp16 passthrough, and restored full bigram capacity within the 16 MB budget.",
-      "final_exact_val_bpb": 1.16360275,
-      "final_exact_val_loss": 1.96468871,
-      "gpu_count": 8,
-      "gpu_type": "H100!",
-      "name": "candidate-pr135-mlp1408-quantized-embed-bigram128-full",
-      "run_id": "20260320-013927-candidate-pr135-mlp1408-quantized-embed-bigram128-full",
-      "runtime": "modal:verify",
-      "stage": "verify",
-      "wallclock_seconds": 1239.436
-    },
-    {
-      "commit": "584795f52d409f0cd9a565711877472c18e770c9",
-      "description": "Full 8-GPU reproduction of PR #114 with the published long-context and selective-precision recipe.",
-      "final_exact_val_bpb": 1.16394312,
-      "final_exact_val_loss": 1.9652692,
-      "gpu_count": 8,
-      "gpu_type": "H100!",
-      "name": "candidate-pr114-int6-mlp3x-slide-full",
-      "run_id": "20260319-215447-candidate-pr114-int6-mlp3x-slide-full",
-      "runtime": "modal:verify",
-      "stage": "verify",
-      "wallclock_seconds": 1099.994
+      "wallclock_seconds": 1133.67
     },
     {
       "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
@@ -229,6 +229,32 @@
         "wallclock_seconds": 1174.478
       },
       {
+        "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
+        "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, no fp16 passthrough, and denser stride-16 sliding eval. Repeat RunPod H100 SXM rerun of the strongest seed to estimate inter-run variance.",
+        "final_exact_val_bpb": 1.16134475,
+        "final_exact_val_loss": 1.96087605,
+        "gpu_count": 8,
+        "gpu_type": "H100-SXM-RunPod",
+        "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
+        "run_id": "runpod-verify-20260320b-seed1337r1",
+        "runtime": "runpod:verify",
+        "stage": "verify",
+        "wallclock_seconds": 1132.174
+      },
+      {
+        "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
+        "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, no fp16 passthrough, and denser stride-16 sliding eval. Clean RunPod H100 SXM rerun with venv-native zstd compression.",
+        "final_exact_val_bpb": 1.16138246,
+        "final_exact_val_loss": 1.96093972,
+        "gpu_count": 8,
+        "gpu_type": "H100-SXM-RunPod",
+        "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
+        "run_id": "runpod-verify-20260320b",
+        "runtime": "runpod:verify",
+        "stage": "verify",
+        "wallclock_seconds": 1133.618
+      },
+      {
         "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
         "description": "Full 8-GPU verification of PR #135 OrthoInit + Int6 MLP3x + BigramHash + SmearGate recipe.",
         "final_exact_val_bpb": 1.16202478,
@@ -242,45 +268,19 @@
         "wallclock_seconds": 1195.598
       },
       {
-        "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
-        "description": "PR114 baseline plus query-dependent SDPA output gating, with a moderately higher LR per the gated-attention paper.",
-        "final_exact_val_bpb": 1.16306306,
-        "final_exact_val_loss": 1.96378327,
+        "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
+        "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, no fp16 passthrough, and denser stride-16 sliding eval. Second clean RunPod H100 SXM rerun with cached data and venv-native zstd compression.",
+        "final_exact_val_bpb": 1.16238551,
+        "final_exact_val_loss": 1.96263331,
         "gpu_count": 8,
-        "gpu_type": "H100!",
-        "name": "candidate-pr114-gated-int6-hlr-full",
-        "run_id": "20260319-230757-candidate-pr114-gated-int6-hlr-full",
-        "runtime": "modal:verify",
+        "gpu_type": "H100-SXM-RunPod",
+        "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
+        "run_id": "runpod-verify-20260320b-seed1338",
+        "runtime": "runpod:verify",
         "stage": "verify",
-        "wallclock_seconds": 1191.795
-      },
-      {
-        "commit": "55afb97d969239f7184064118af9daf2271dbba4",
-        "description": "PR #135 family with MLP 1408, reduced fp16 passthrough, and restored full bigram capacity within the 16 MB budget.",
-        "final_exact_val_bpb": 1.16360275,
-        "final_exact_val_loss": 1.96468871,
-        "gpu_count": 8,
-        "gpu_type": "H100!",
-        "name": "candidate-pr135-mlp1408-quantized-embed-bigram128-full",
-        "run_id": "20260320-013927-candidate-pr135-mlp1408-quantized-embed-bigram128-full",
-        "runtime": "modal:verify",
-        "stage": "verify",
-        "wallclock_seconds": 1239.436
-      },
-      {
-        "commit": "584795f52d409f0cd9a565711877472c18e770c9",
-        "description": "Full 8-GPU reproduction of PR #114 with the published long-context and selective-precision recipe.",
-        "final_exact_val_bpb": 1.16394312,
-        "final_exact_val_loss": 1.9652692,
-        "gpu_count": 8,
-        "gpu_type": "H100!",
-        "name": "candidate-pr114-int6-mlp3x-slide-full",
-        "run_id": "20260319-215447-candidate-pr114-int6-mlp3x-slide-full",
-        "runtime": "modal:verify",
-        "stage": "verify",
-        "wallclock_seconds": 1099.994
+        "wallclock_seconds": 1133.67
       }
     ]
   },
-  "updated_at": "2026-03-20T11:45:14+00:00"
+  "updated_at": "2026-03-20T18:59:20+00:00"
 }
