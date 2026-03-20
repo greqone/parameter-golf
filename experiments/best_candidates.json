@@ -105,6 +105,19 @@
       "wallclock_seconds": 207.361
     },
     {
+      "commit": "bd6d65b8907d0bcbfd10f307da69f78acb1d985b",
+      "description": "Proxy for the near-bound PR135 MLP1408 bigram128 candidate with quantized per-row export scales.",
+      "final_exact_val_bpb": 4.82809361,
+      "final_exact_val_loss": 8.15200975,
+      "gpu_count": 1,
+      "gpu_type": "H100",
+      "name": "proxy-pr135-qscale-mlp1408-bigram128",
+      "run_id": "20260320-053533-proxy-pr135-qscale-mlp1408-bigram128",
+      "runtime": "modal:proxy",
+      "stage": "proxy",
+      "wallclock_seconds": 2401.526
+    },
+    {
       "commit": "aeedef67eca38cb6667c62903fc5630926fc3dab",
       "description": "Proxy for raw PR135 training with post-training FFN norm pruning, bigram96, and 12% export pruning.",
       "final_exact_val_bpb": 4.95065776,
@@ -116,19 +129,6 @@
       "runtime": "modal:proxy",
       "stage": "proxy",
       "wallclock_seconds": 1283.12
-    },
-    {
-      "commit": "aeedef67eca38cb6667c62903fc5630926fc3dab",
-      "description": "Proxy for raw PR135 training with post-training FFN norm pruning, bigram96, and 15% export pruning.",
-      "final_exact_val_bpb": 4.9519247,
-      "final_exact_val_loss": 8.36109428,
-      "gpu_count": 1,
-      "gpu_type": "H100",
-      "name": "proxy-pr135-export-prune-p015-bigram96",
-      "run_id": "20260320-043948-proxy-pr135-export-prune-p015-bigram96",
-      "runtime": "modal:proxy",
-      "stage": "proxy",
-      "wallclock_seconds": 1284.795
     }
   ],
   "by_stage": {
@@ -175,6 +175,19 @@
         "wallclock_seconds": 207.361
       },
       {
+        "commit": "bd6d65b8907d0bcbfd10f307da69f78acb1d985b",
+        "description": "Proxy for the near-bound PR135 MLP1408 bigram128 candidate with quantized per-row export scales.",
+        "final_exact_val_bpb": 4.82809361,
+        "final_exact_val_loss": 8.15200975,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-pr135-qscale-mlp1408-bigram128",
+        "run_id": "20260320-053533-proxy-pr135-qscale-mlp1408-bigram128",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 2401.526
+      },
+      {
         "commit": "aeedef67eca38cb6667c62903fc5630926fc3dab",
         "description": "Proxy for raw PR135 training with post-training FFN norm pruning, bigram96, and 12% export pruning.",
         "final_exact_val_bpb": 4.95065776,
@@ -199,19 +212,6 @@
         "runtime": "modal:proxy",
         "stage": "proxy",
         "wallclock_seconds": 1284.795
-      },
-      {
-        "commit": "3939106a855dae252c01e17172d154996f04efd3",
-        "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 15% structured export pruning.",
-        "final_exact_val_bpb": 4.95635544,
-        "final_exact_val_loss": 8.36857538,
-        "gpu_count": 1,
-        "gpu_type": "H100",
-        "name": "proxy-pr135-ffn-prune-p015-bigram96",
-        "run_id": "20260320-034920-proxy-pr135-ffn-prune-p015-bigram96",
-        "runtime": "modal:proxy",
-        "stage": "proxy",
-        "wallclock_seconds": 1376.572
       }
     ],
     "verify": [
@@ -282,5 +282,5 @@
       }
     ]
   },
-  "updated_at": "2026-03-20T05:32:53+00:00"
+  "updated_at": "2026-03-20T06:17:41+00:00"
 }
