@@ -105,30 +105,30 @@
       "wallclock_seconds": 207.361
     },
     {
-      "commit": "3939106a855dae252c01e17172d154996f04efd3",
-      "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 15% structured export pruning.",
-      "final_exact_val_bpb": 4.95635544,
-      "final_exact_val_loss": 8.36857538,
+      "commit": "aeedef67eca38cb6667c62903fc5630926fc3dab",
+      "description": "Proxy for raw PR135 training with post-training FFN norm pruning, bigram96, and 12% export pruning.",
+      "final_exact_val_bpb": 4.95065776,
+      "final_exact_val_loss": 8.35895512,
       "gpu_count": 1,
       "gpu_type": "H100",
-      "name": "proxy-pr135-ffn-prune-p015-bigram96",
-      "run_id": "20260320-034920-proxy-pr135-ffn-prune-p015-bigram96",
+      "name": "proxy-pr135-export-prune-p012-bigram96",
+      "run_id": "20260320-043948-proxy-pr135-export-prune-p012-bigram96",
       "runtime": "modal:proxy",
       "stage": "proxy",
-      "wallclock_seconds": 1376.572
+      "wallclock_seconds": 1283.12
     },
     {
-      "commit": "3939106a855dae252c01e17172d154996f04efd3",
-      "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 20% structured export pruning.",
-      "final_exact_val_bpb": 4.95863944,
-      "final_exact_val_loss": 8.37243181,
+      "commit": "aeedef67eca38cb6667c62903fc5630926fc3dab",
+      "description": "Proxy for raw PR135 training with post-training FFN norm pruning, bigram96, and 15% export pruning.",
+      "final_exact_val_bpb": 4.9519247,
+      "final_exact_val_loss": 8.36109428,
       "gpu_count": 1,
       "gpu_type": "H100",
-      "name": "proxy-pr135-ffn-prune-p020-bigram96",
-      "run_id": "20260320-034920-proxy-pr135-ffn-prune-p020-bigram96",
+      "name": "proxy-pr135-export-prune-p015-bigram96",
+      "run_id": "20260320-043948-proxy-pr135-export-prune-p015-bigram96",
       "runtime": "modal:proxy",
       "stage": "proxy",
-      "wallclock_seconds": 1436.504
+      "wallclock_seconds": 1284.795
     }
   ],
   "by_stage": {
@@ -175,6 +175,32 @@
         "wallclock_seconds": 207.361
       },
       {
+        "commit": "aeedef67eca38cb6667c62903fc5630926fc3dab",
+        "description": "Proxy for raw PR135 training with post-training FFN norm pruning, bigram96, and 12% export pruning.",
+        "final_exact_val_bpb": 4.95065776,
+        "final_exact_val_loss": 8.35895512,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-pr135-export-prune-p012-bigram96",
+        "run_id": "20260320-043948-proxy-pr135-export-prune-p012-bigram96",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 1283.12
+      },
+      {
+        "commit": "aeedef67eca38cb6667c62903fc5630926fc3dab",
+        "description": "Proxy for raw PR135 training with post-training FFN norm pruning, bigram96, and 15% export pruning.",
+        "final_exact_val_bpb": 4.9519247,
+        "final_exact_val_loss": 8.36109428,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-pr135-export-prune-p015-bigram96",
+        "run_id": "20260320-043948-proxy-pr135-export-prune-p015-bigram96",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 1284.795
+      },
+      {
         "commit": "3939106a855dae252c01e17172d154996f04efd3",
         "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 15% structured export pruning.",
         "final_exact_val_bpb": 4.95635544,
@@ -186,32 +212,6 @@
         "runtime": "modal:proxy",
         "stage": "proxy",
         "wallclock_seconds": 1376.572
-      },
-      {
-        "commit": "3939106a855dae252c01e17172d154996f04efd3",
-        "description": "Proxy for PR135 with pruning-aware FFN channel gates, bigram96, and 20% structured export pruning.",
-        "final_exact_val_bpb": 4.95863944,
-        "final_exact_val_loss": 8.37243181,
-        "gpu_count": 1,
-        "gpu_type": "H100",
-        "name": "proxy-pr135-ffn-prune-p020-bigram96",
-        "run_id": "20260320-034920-proxy-pr135-ffn-prune-p020-bigram96",
-        "runtime": "modal:proxy",
-        "stage": "proxy",
-        "wallclock_seconds": 1436.504
-      },
-      {
-        "commit": "ee0f58b7d97321eb809ececfcc2831fcef67b7de",
-        "description": "Proxy sweep for conditioned loops plus tiny per-loop low-rank attention deltas.",
-        "final_exact_val_bpb": 6.62227608,
-        "final_exact_val_loss": 11.18143576,
-        "gpu_count": 1,
-        "gpu_type": "H100",
-        "name": "proxy-pr114-looped-timestep-int6-lora2",
-        "run_id": "20260320-025612-proxy-pr114-looped-timestep-int6-lora2",
-        "runtime": "modal:proxy",
-        "stage": "proxy",
-        "wallclock_seconds": 317.895
       }
     ],
     "verify": [
@@ -282,5 +282,5 @@
       }
     ]
   },
-  "updated_at": "2026-03-20T04:38:11+00:00"
+  "updated_at": "2026-03-20T05:03:13+00:00"
 }
