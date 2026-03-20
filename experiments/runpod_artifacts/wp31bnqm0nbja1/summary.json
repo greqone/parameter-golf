@@ -1,0 +1,22 @@
+{
+  "artifact_path": "experiments/runpod_artifacts/wp31bnqm0nbja1/final_model.int6.ptz",
+  "artifact_bytes": 16320301,
+  "code_bytes": 63056,
+  "config_name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
+  "data_center_id": "EUR-IS-3",
+  "gpu_count": 8,
+  "gpu_type": "NVIDIA H100 80GB HBM3",
+  "log_path": "experiments/runpod_artifacts/wp31bnqm0nbja1/runpod_qscale_verify_attempt1_machine_exit.log",
+  "notes": [
+    "RunPod exited the pod twice during evaluation on the EUR-IS-3 machine family.",
+    "The first full run completed 600s of training and wrote final_model.int6.ptz before the pod was terminated during stride-16 sliding-window evaluation.",
+    "Because torchrun resolved to the system interpreter instead of the venv interpreter, zstandard was not available in-process and the export used zlib, pushing total bytes over the 16,000,000 cap."
+  ],
+  "pod_id": "wp31bnqm0nbja1",
+  "pre_sliding_exact_val_bpb": 1.19317364,
+  "pre_sliding_exact_val_loss": 2.01462371,
+  "run_status": "partial_verify_provider_exit",
+  "total_submission_bytes_with_runpod_export": 16383357,
+  "train_step": 5417,
+  "train_time_ms": 600106
+}
