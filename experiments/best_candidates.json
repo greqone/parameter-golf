@@ -105,30 +105,30 @@
       "wallclock_seconds": 207.361
     },
     {
-      "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
-      "description": "Novel proxy activating tied-depth recurrence and per-loop attention LoRA adapters with QAT and seq2048 training.",
-      "final_exact_val_bpb": 6.82659185,
-      "final_exact_val_loss": 11.52639973,
+      "commit": "ee0f58b7d97321eb809ececfcc2831fcef67b7de",
+      "description": "Proxy sweep for conditioned loops plus tiny per-loop low-rank attention deltas.",
+      "final_exact_val_bpb": 6.62227608,
+      "final_exact_val_loss": 11.18143576,
       "gpu_count": 1,
       "gpu_type": "H100",
-      "name": "proxy-looped-lora-qat-seq2048",
-      "run_id": "20260319-212046-proxy-looped-lora-qat-seq2048",
+      "name": "proxy-pr114-looped-timestep-int6-lora2",
+      "run_id": "20260320-025612-proxy-pr114-looped-timestep-int6-lora2",
       "runtime": "modal:proxy",
       "stage": "proxy",
-      "wallclock_seconds": 1065.271
+      "wallclock_seconds": 317.895
     },
     {
-      "commit": "13375e9750c38b045ef89635fe36acb1028d6c21",
-      "description": "Cheap smoke for the PR114-based hybrid with tied-depth looping and per-loop attention LoRA.",
-      "final_exact_val_bpb": 6.84680119,
-      "final_exact_val_loss": 11.56053701,
+      "commit": "c862f9cc492a1f873fb912cc2175055dc87101d3",
+      "description": "Cheap smoke for a PR114-derived looped model with explicit timestep conditioning and per-loop residual scaling.",
+      "final_exact_val_bpb": 6.79338389,
+      "final_exact_val_loss": 11.47034413,
       "gpu_count": 1,
       "gpu_type": "H100",
-      "name": "proxy-pr114-looped-int6-smoke",
-      "run_id": "20260319-222854-proxy-pr114-looped-int6-smoke",
+      "name": "proxy-pr114-looped-timestep-int6-smoke",
+      "run_id": "20260320-024748-proxy-pr114-looped-timestep-int6-smoke",
       "runtime": "modal:proxy",
       "stage": "proxy",
-      "wallclock_seconds": 331.642
+      "wallclock_seconds": 243.023
     }
   ],
   "by_stage": {
@@ -175,6 +175,32 @@
         "wallclock_seconds": 207.361
       },
       {
+        "commit": "ee0f58b7d97321eb809ececfcc2831fcef67b7de",
+        "description": "Proxy sweep for conditioned loops plus tiny per-loop low-rank attention deltas.",
+        "final_exact_val_bpb": 6.62227608,
+        "final_exact_val_loss": 11.18143576,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-pr114-looped-timestep-int6-lora2",
+        "run_id": "20260320-025612-proxy-pr114-looped-timestep-int6-lora2",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 317.895
+      },
+      {
+        "commit": "c862f9cc492a1f873fb912cc2175055dc87101d3",
+        "description": "Cheap smoke for a PR114-derived looped model with explicit timestep conditioning and per-loop residual scaling.",
+        "final_exact_val_bpb": 6.79338389,
+        "final_exact_val_loss": 11.47034413,
+        "gpu_count": 1,
+        "gpu_type": "H100",
+        "name": "proxy-pr114-looped-timestep-int6-smoke",
+        "run_id": "20260320-024748-proxy-pr114-looped-timestep-int6-smoke",
+        "runtime": "modal:proxy",
+        "stage": "proxy",
+        "wallclock_seconds": 243.023
+      },
+      {
         "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
         "description": "Novel proxy activating tied-depth recurrence and per-loop attention LoRA adapters with QAT and seq2048 training.",
         "final_exact_val_bpb": 6.82659185,
@@ -186,32 +212,6 @@
         "runtime": "modal:proxy",
         "stage": "proxy",
         "wallclock_seconds": 1065.271
-      },
-      {
-        "commit": "13375e9750c38b045ef89635fe36acb1028d6c21",
-        "description": "Cheap smoke for the PR114-based hybrid with tied-depth looping and per-loop attention LoRA.",
-        "final_exact_val_bpb": 6.84680119,
-        "final_exact_val_loss": 11.56053701,
-        "gpu_count": 1,
-        "gpu_type": "H100",
-        "name": "proxy-pr114-looped-int6-smoke",
-        "run_id": "20260319-222854-proxy-pr114-looped-int6-smoke",
-        "runtime": "modal:proxy",
-        "stage": "proxy",
-        "wallclock_seconds": 331.642
-      },
-      {
-        "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
-        "description": "Proxy reproduction of PR #114 to establish a live-frontier baseline on our Modal stack.",
-        "final_exact_val_bpb": 7.32398324,
-        "final_exact_val_loss": 12.36623891,
-        "gpu_count": 1,
-        "gpu_type": "H100",
-        "name": "proxy-pr114-int6-mlp3x-slide",
-        "run_id": "20260319-212046-proxy-pr114-int6-mlp3x-slide",
-        "runtime": "modal:proxy",
-        "stage": "proxy",
-        "wallclock_seconds": 1253.48
       }
     ],
     "verify": [
@@ -282,5 +282,5 @@
       }
     ]
   },
-  "updated_at": "2026-03-20T02:02:35+00:00"
+  "updated_at": "2026-03-20T03:03:40+00:00"
 }
