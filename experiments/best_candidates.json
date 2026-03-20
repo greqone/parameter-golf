@@ -40,6 +40,19 @@
       "wallclock_seconds": 1191.795
     },
     {
+      "commit": "55afb97d969239f7184064118af9daf2271dbba4",
+      "description": "PR #135 family with MLP 1408, reduced fp16 passthrough, and restored full bigram capacity within the 16 MB budget.",
+      "final_exact_val_bpb": 1.16360275,
+      "final_exact_val_loss": 1.96468871,
+      "gpu_count": 8,
+      "gpu_type": "H100!",
+      "name": "candidate-pr135-mlp1408-quantized-embed-bigram128-full",
+      "run_id": "20260320-013927-candidate-pr135-mlp1408-quantized-embed-bigram128-full",
+      "runtime": "modal:verify",
+      "stage": "verify",
+      "wallclock_seconds": 1239.436
+    },
+    {
       "commit": "584795f52d409f0cd9a565711877472c18e770c9",
       "description": "Full 8-GPU reproduction of PR #114 with the published long-context and selective-precision recipe.",
       "final_exact_val_bpb": 1.16394312,
@@ -51,19 +64,6 @@
       "runtime": "modal:verify",
       "stage": "verify",
       "wallclock_seconds": 1099.994
-    },
-    {
-      "commit": "5a174a08011595aa8db2d70456ba56a0e5c2d5c8",
-      "description": "PR #135 family with a 1408-hidden MLP and reduced fp16 passthrough to target the 16 MB bound with less capacity loss.",
-      "final_exact_val_bpb": 1.16525381,
-      "final_exact_val_loss": 1.96747643,
-      "gpu_count": 8,
-      "gpu_type": "H100!",
-      "name": "candidate-pr135-mlp1408-quantized-embed-full",
-      "run_id": "20260320-011512-candidate-pr135-mlp1408-quantized-embed-full",
-      "runtime": "modal:verify",
-      "stage": "verify",
-      "wallclock_seconds": 1220.846
     },
     {
       "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
@@ -255,6 +255,19 @@
         "wallclock_seconds": 1191.795
       },
       {
+        "commit": "55afb97d969239f7184064118af9daf2271dbba4",
+        "description": "PR #135 family with MLP 1408, reduced fp16 passthrough, and restored full bigram capacity within the 16 MB budget.",
+        "final_exact_val_bpb": 1.16360275,
+        "final_exact_val_loss": 1.96468871,
+        "gpu_count": 8,
+        "gpu_type": "H100!",
+        "name": "candidate-pr135-mlp1408-quantized-embed-bigram128-full",
+        "run_id": "20260320-013927-candidate-pr135-mlp1408-quantized-embed-bigram128-full",
+        "runtime": "modal:verify",
+        "stage": "verify",
+        "wallclock_seconds": 1239.436
+      },
+      {
         "commit": "584795f52d409f0cd9a565711877472c18e770c9",
         "description": "Full 8-GPU reproduction of PR #114 with the published long-context and selective-precision recipe.",
         "final_exact_val_bpb": 1.16394312,
@@ -266,21 +279,8 @@
         "runtime": "modal:verify",
         "stage": "verify",
         "wallclock_seconds": 1099.994
-      },
-      {
-        "commit": "5a174a08011595aa8db2d70456ba56a0e5c2d5c8",
-        "description": "PR #135 family with a 1408-hidden MLP and reduced fp16 passthrough to target the 16 MB bound with less capacity loss.",
-        "final_exact_val_bpb": 1.16525381,
-        "final_exact_val_loss": 1.96747643,
-        "gpu_count": 8,
-        "gpu_type": "H100!",
-        "name": "candidate-pr135-mlp1408-quantized-embed-full",
-        "run_id": "20260320-011512-candidate-pr135-mlp1408-quantized-embed-full",
-        "runtime": "modal:verify",
-        "stage": "verify",
-        "wallclock_seconds": 1220.846
       }
     ]
   },
-  "updated_at": "2026-03-20T01:38:38+00:00"
+  "updated_at": "2026-03-20T02:02:35+00:00"
 }
