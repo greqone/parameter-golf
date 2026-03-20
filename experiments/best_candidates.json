@@ -1,6 +1,32 @@
 {
   "best_overall": [
     {
+      "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
+      "description": "Full 8-GPU verification of PR #135 OrthoInit + Int6 MLP3x + BigramHash + SmearGate recipe.",
+      "final_exact_val_bpb": 1.16202478,
+      "final_exact_val_loss": 1.96202474,
+      "gpu_count": 8,
+      "gpu_type": "H100!",
+      "name": "candidate-pr135-orthobigram-smear-full",
+      "run_id": "20260319-233558-candidate-pr135-orthobigram-smear-full",
+      "runtime": "modal:verify",
+      "stage": "verify",
+      "wallclock_seconds": 1195.598
+    },
+    {
+      "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
+      "description": "PR114 baseline plus query-dependent SDPA output gating, with a moderately higher LR per the gated-attention paper.",
+      "final_exact_val_bpb": 1.16306306,
+      "final_exact_val_loss": 1.96378327,
+      "gpu_count": 8,
+      "gpu_type": "H100!",
+      "name": "candidate-pr114-gated-int6-hlr-full",
+      "run_id": "20260319-230757-candidate-pr114-gated-int6-hlr-full",
+      "runtime": "modal:verify",
+      "stage": "verify",
+      "wallclock_seconds": 1191.795
+    },
+    {
       "commit": "584795f52d409f0cd9a565711877472c18e770c9",
       "description": "Full 8-GPU reproduction of PR #114 with the published long-context and selective-precision recipe.",
       "final_exact_val_bpb": 1.16394312,
@@ -103,19 +129,6 @@
       "runtime": "modal:proxy",
       "stage": "proxy",
       "wallclock_seconds": 331.642
-    },
-    {
-      "commit": "90b2c80cab2e5bed53aede69fa2a4decc8b70681",
-      "description": "Proxy reproduction of PR #114 to establish a live-frontier baseline on our Modal stack.",
-      "final_exact_val_bpb": 7.32398324,
-      "final_exact_val_loss": 12.36623891,
-      "gpu_count": 1,
-      "gpu_type": "H100",
-      "name": "proxy-pr114-int6-mlp3x-slide",
-      "run_id": "20260319-212046-proxy-pr114-int6-mlp3x-slide",
-      "runtime": "modal:proxy",
-      "stage": "proxy",
-      "wallclock_seconds": 1253.48
     }
   ],
   "by_stage": {
@@ -203,6 +216,32 @@
     ],
     "verify": [
       {
+        "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
+        "description": "Full 8-GPU verification of PR #135 OrthoInit + Int6 MLP3x + BigramHash + SmearGate recipe.",
+        "final_exact_val_bpb": 1.16202478,
+        "final_exact_val_loss": 1.96202474,
+        "gpu_count": 8,
+        "gpu_type": "H100!",
+        "name": "candidate-pr135-orthobigram-smear-full",
+        "run_id": "20260319-233558-candidate-pr135-orthobigram-smear-full",
+        "runtime": "modal:verify",
+        "stage": "verify",
+        "wallclock_seconds": 1195.598
+      },
+      {
+        "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
+        "description": "PR114 baseline plus query-dependent SDPA output gating, with a moderately higher LR per the gated-attention paper.",
+        "final_exact_val_bpb": 1.16306306,
+        "final_exact_val_loss": 1.96378327,
+        "gpu_count": 8,
+        "gpu_type": "H100!",
+        "name": "candidate-pr114-gated-int6-hlr-full",
+        "run_id": "20260319-230757-candidate-pr114-gated-int6-hlr-full",
+        "runtime": "modal:verify",
+        "stage": "verify",
+        "wallclock_seconds": 1191.795
+      },
+      {
         "commit": "584795f52d409f0cd9a565711877472c18e770c9",
         "description": "Full 8-GPU reproduction of PR #114 with the published long-context and selective-precision recipe.",
         "final_exact_val_bpb": 1.16394312,
@@ -243,5 +282,5 @@
       }
     ]
   },
-  "updated_at": "2026-03-19T23:06:21+00:00"
+  "updated_at": "2026-03-19T23:58:33+00:00"
 }
