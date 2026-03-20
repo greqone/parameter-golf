@@ -53,6 +53,8 @@ class MLP(nn.Module):
         self.proj = base.CastedLinear(hidden, dim, bias=False)
         self.proj._zero_init = True
         self.channel_gate = nn.Parameter(torch.full((hidden,), PRUNE_GATE_INIT, dtype=torch.float32))
+        if not PRUNE_FORWARD_GATING and PRUNE_LAMBDA <= 0.0:
+            self.channel_gate.requires_grad_(False)
 
     def forward(self, x: Tensor) -> Tensor:
         h = torch.relu(self.fc(x)).square()
