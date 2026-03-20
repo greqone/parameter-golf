@@ -1,6 +1,19 @@
 {
   "best_overall": [
     {
+      "commit": "aa0bd5b7b084e26d9b91d5df94b14c6f012fb45f",
+      "description": "Full 8-GPU verification of PR #135 with packed 6-bit export for int6 tensors.",
+      "final_exact_val_bpb": 1.15852413,
+      "final_exact_val_loss": 1.95611405,
+      "gpu_count": 8,
+      "gpu_type": "H100!",
+      "name": "candidate-pr135-packed-int6-full",
+      "run_id": "20260320-000330-candidate-pr135-packed-int6-full",
+      "runtime": "modal:verify",
+      "stage": "verify",
+      "wallclock_seconds": 1174.478
+    },
+    {
       "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
       "description": "Full 8-GPU verification of PR #135 OrthoInit + Int6 MLP3x + BigramHash + SmearGate recipe.",
       "final_exact_val_bpb": 1.16202478,
@@ -64,19 +77,6 @@
       "runtime": "modal:promote",
       "stage": "promote",
       "wallclock_seconds": 941.528
-    },
-    {
-      "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
-      "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
-      "final_exact_val_bpb": 1.21223295,
-      "final_exact_val_loss": 2.04680455,
-      "gpu_count": 8,
-      "gpu_type": "H100!",
-      "name": "candidate-long-context-seq2048-full",
-      "run_id": "20260319-190545-candidate-long-context-seq2048-full",
-      "runtime": "modal:verify",
-      "stage": "verify",
-      "wallclock_seconds": 935.386
     },
     {
       "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
@@ -216,6 +216,19 @@
     ],
     "verify": [
       {
+        "commit": "aa0bd5b7b084e26d9b91d5df94b14c6f012fb45f",
+        "description": "Full 8-GPU verification of PR #135 with packed 6-bit export for int6 tensors.",
+        "final_exact_val_bpb": 1.15852413,
+        "final_exact_val_loss": 1.95611405,
+        "gpu_count": 8,
+        "gpu_type": "H100!",
+        "name": "candidate-pr135-packed-int6-full",
+        "run_id": "20260320-000330-candidate-pr135-packed-int6-full",
+        "runtime": "modal:verify",
+        "stage": "verify",
+        "wallclock_seconds": 1174.478
+      },
+      {
         "commit": "38612bf8cc99a8c458408b4f6a629d5c17b061cd",
         "description": "Full 8-GPU verification of PR #135 OrthoInit + Int6 MLP3x + BigramHash + SmearGate recipe.",
         "final_exact_val_bpb": 1.16202478,
@@ -266,21 +279,8 @@
         "runtime": "modal:verify",
         "stage": "verify",
         "wallclock_seconds": 1346.689
-      },
-      {
-        "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
-        "description": "Full-track seq2048 candidate for 8-GPU promotion and H100 verification.",
-        "final_exact_val_bpb": 1.21223295,
-        "final_exact_val_loss": 2.04680455,
-        "gpu_count": 8,
-        "gpu_type": "H100!",
-        "name": "candidate-long-context-seq2048-full",
-        "run_id": "20260319-190545-candidate-long-context-seq2048-full",
-        "runtime": "modal:verify",
-        "stage": "verify",
-        "wallclock_seconds": 935.386
       }
     ]
   },
-  "updated_at": "2026-03-19T23:58:33+00:00"
+  "updated_at": "2026-03-20T00:25:47+00:00"
 }
