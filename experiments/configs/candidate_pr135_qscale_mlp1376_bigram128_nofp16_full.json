@@ -1,0 +1,43 @@
+{
+  "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-full",
+  "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, and no fp16 passthrough.",
+  "stage": "verify",
+  "script_path": "experiments/custom_trainers/train_gpt_pr135_qscale_int6.py",
+  "data_variant": "sp1024",
+  "train_shards": 80,
+  "seed": 1337,
+  "checkpoint_every": 500,
+  "env": {
+    "ITERATIONS": "20000",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "200",
+    "TRAIN_BATCH_TOKENS": "786432",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "600",
+    "TRAIN_SEQ_LEN": "2048",
+    "EVAL_STRIDE": "32",
+    "MLP_HIDDEN": "1376",
+    "MATRIX_LR": "0.02",
+    "SCALAR_LR": "0.02",
+    "TIED_EMBED_LR": "0.03",
+    "MUON_MOMENTUM": "0.99",
+    "MUON_MOMENTUM_WARMUP_START": "0.92",
+    "MUON_MOMENTUM_WARMUP_STEPS": "1500",
+    "WARMDOWN_ITERS": "3000",
+    "GRAD_CLIP_NORM": "0.3",
+    "WEIGHT_DECAY": "0.01",
+    "BIGRAM_VOCAB_SIZE": "4096",
+    "BIGRAM_DIM": "128",
+    "FP16_KEEP_NAME_PATTERNS": ""
+  },
+  "tags": [
+    "frontier",
+    "pr135",
+    "verify",
+    "qscale",
+    "int6",
+    "mlp1376",
+    "bigram128",
+    "nofp16"
+  ]
+}
