@@ -36,6 +36,8 @@ SPEC.loader.exec_module(base)
 PRUNE_LAMBDA = float(os.environ.get("PRUNE_LAMBDA", 0.0))
 PRUNE_FRACTION = float(os.environ.get("PRUNE_FRACTION", 0.0))
 PRUNE_GATE_INIT = float(os.environ.get("PRUNE_GATE_INIT", 2.5))
+PRUNE_FORWARD_GATING = bool(int(os.environ.get("PRUNE_FORWARD_GATING", "1")))
+PRUNE_USE_GATE_SALIENCY = bool(int(os.environ.get("PRUNE_USE_GATE_SALIENCY", "1")))
 
 EXTRA_CONTROL_PATTERNS = ("channel_gate",)
 base.CONTROL_TENSOR_NAME_PATTERNS = tuple(
@@ -54,8 +56,10 @@ class MLP(nn.Module):
 
     def forward(self, x: Tensor) -> Tensor:
         h = torch.relu(self.fc(x)).square()
-        gate = torch.sigmoid(self.channel_gate.to(dtype=h.dtype))[None, None, :]
-        return self.proj(h * gate)
+        if PRUNE_FORWARD_GATING:
+            gate = torch.sigmoid(self.channel_gate.to(dtype=h.dtype))[None, None, :]
+            h = h * gate
+        return self.proj(h)
 
     def prune_penalty(self) -> Tensor:
         return torch.sigmoid(self.channel_gate).mean()
@@ -214,12 +218,17 @@ def _apply_ffn_export_pruning(state_dict: dict[str, Tensor]) -> dict[str, Tensor
         proj_name = f"blocks.{layer_idx}.mlp.proj.weight"
         if gate_name not in pruned or fc_name not in pruned or proj_name not in pruned:
             continue
-        gate = torch.sigmoid(pruned[gate_name].float())
-        hidden = gate.numel()
+        if PRUNE_USE_GATE_SALIENCY:
+            saliency = torch.sigmoid(pruned[gate_name].float())
+        else:
+            fc = pruned[fc_name].float()
+            proj = pruned[proj_name].float()
+            saliency = fc.square().mean(dim=1) + proj.square().mean(dim=0)
+        hidden = saliency.numel()
         prune_count = min(max(int(round(PRUNE_FRACTION * hidden)), 0), max(hidden - 1, 0))
         if prune_count <= 0:
             continue
-        prune_idx = torch.argsort(gate)[:prune_count]
+        prune_idx = torch.argsort(saliency)[:prune_count]
         pruned[fc_name][prune_idx, :] = 0
         pruned[proj_name][:, prune_idx] = 0
         pruned[gate_name][prune_idx] = -20.0
