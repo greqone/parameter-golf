@@ -1,6 +1,58 @@
 {
   "best_overall": [
     {
+      "commit": "774c04ecb07f5cb23a7ca40b85aa597bf493a2e8",
+      "description": "RunPod H100 SXM verify of the draft lane with BigramHash(12288). Strongest raw score from the lost pod, but over the 16,000,000-byte cap.",
+      "final_exact_val_bpb": 1.14231713,
+      "final_exact_val_loss": 1.92874951,
+      "gpu_count": 8,
+      "gpu_type": "H100-SXM-RunPod",
+      "name": "candidate-draft-10l-int5-bigram12288-seed2024-runpod",
+      "run_id": "runpod-draft10l-int5-bigram12288-seed2024-zstd",
+      "runtime": "runpod:verify",
+      "stage": "verify",
+      "wallclock_seconds": 770.463
+    },
+    {
+      "commit": "774c04ecb07f5cb23a7ca40b85aa597bf493a2e8",
+      "description": "RunPod H100 SXM verify of the BigramHash(12288) draft lane with PRUNE_QUANTILE=0.045. Clean under-cap result recovered before the pod vanished.",
+      "final_exact_val_bpb": 1.14276907,
+      "final_exact_val_loss": 1.9295126,
+      "gpu_count": 8,
+      "gpu_type": "H100-SXM-RunPod",
+      "name": "candidate-draft-10l-int5-bigram12288-seed2024-p045-runpod",
+      "run_id": "runpod-draft10l-int5-bigram12288-seed2024-p045",
+      "runtime": "runpod:verify",
+      "stage": "verify",
+      "wallclock_seconds": 771.173
+    },
+    {
+      "commit": "08e08778fec6d06eec1e1f93f2e58971551e5f09",
+      "description": "RunPod H100 SXM rerun of the draft 10-layer mixed int5/int6 BigramHash(10240) SWA recipe at seed 2024 with zstd active. Recovered from the remote log after the pod later disappeared.",
+      "final_exact_val_bpb": 1.14303062,
+      "final_exact_val_loss": 1.92995421,
+      "gpu_count": 8,
+      "gpu_type": "H100-SXM-RunPod",
+      "name": "candidate-draft-10l-int5-bigram-swa-seed2024-runpod",
+      "run_id": "runpod-draft10l-int5-bigram-swa-seed2024-zstd",
+      "runtime": "runpod:verify",
+      "stage": "verify",
+      "wallclock_seconds": 770.476
+    },
+    {
+      "commit": "08e08778fec6d06eec1e1f93f2e58971551e5f09",
+      "description": "RunPod H100 SXM verify of the draft 10-layer mixed int5/int6 BigramHash(10240) SWA recipe. Score comes from the original exact roundtrip log; size comes from a lossless zstd re-export of the saved final_model.pt checkpoint.",
+      "final_exact_val_bpb": 1.14308161,
+      "final_exact_val_loss": 1.93004031,
+      "gpu_count": 8,
+      "gpu_type": "H100-SXM-RunPod",
+      "name": "candidate-draft-10l-int5-bigram-swa-seed42-runpod-reexport",
+      "run_id": "runpod-draft10l-int5-bigram-swa-seed42",
+      "runtime": "runpod:verify",
+      "stage": "verify",
+      "wallclock_seconds": 770.776
+    },
+    {
       "commit": "efcae6870f4405adc5882e27cc8ffa7fc97b9eca",
       "description": "Portability verify of the draft 10-layer mixed int5/int6 BigramHash(10240) SmearGate SWA recipe on 8xH100.",
       "final_exact_val_bpb": 1.15078819,
@@ -12,58 +64,6 @@
       "runtime": "modal:verify",
       "stage": "verify",
       "wallclock_seconds": 1176.255
-    },
-    {
-      "commit": "584795f52d409f0cd9a565711877472c18e770c9",
-      "description": "Second same-provider rerun of PR #114 on the same warm RunPod H100 SXM pod.",
-      "final_exact_val_bpb": 1.15536852,
-      "final_exact_val_loss": 1.95079135,
-      "gpu_count": 8,
-      "gpu_type": "H100-SXM-RunPod",
-      "name": "candidate-pr114-int6-mlp3x-slide-full",
-      "run_id": "runpod-verify-pr114-20260320-seed1338",
-      "runtime": "runpod:verify",
-      "stage": "verify",
-      "wallclock_seconds": 738.233
-    },
-    {
-      "commit": "584795f52d409f0cd9a565711877472c18e770c9",
-      "description": "Third same-provider rerun of PR #114 on the same warm RunPod H100 SXM pod.",
-      "final_exact_val_bpb": 1.15563461,
-      "final_exact_val_loss": 1.95124064,
-      "gpu_count": 8,
-      "gpu_type": "H100-SXM-RunPod",
-      "name": "candidate-pr114-int6-mlp3x-slide-full",
-      "run_id": "runpod-verify-pr114-20260320-seed1339",
-      "runtime": "runpod:verify",
-      "stage": "verify",
-      "wallclock_seconds": 738.236
-    },
-    {
-      "commit": "aa0bd5b7b084e26d9b91d5df94b14c6f012fb45f",
-      "description": "Full 8-GPU verification of PR #135 with packed 6-bit export for int6 tensors.",
-      "final_exact_val_bpb": 1.15852413,
-      "final_exact_val_loss": 1.95611405,
-      "gpu_count": 8,
-      "gpu_type": "H100!",
-      "name": "candidate-pr135-packed-int6-full",
-      "run_id": "20260320-000330-candidate-pr135-packed-int6-full",
-      "runtime": "modal:verify",
-      "stage": "verify",
-      "wallclock_seconds": 1174.478
-    },
-    {
-      "commit": "584795f52d409f0cd9a565711877472c18e770c9",
-      "description": "Fresh same-provider rerun of PR #114 with the published long-context and selective-precision recipe on RunPod H100 SXM.",
-      "final_exact_val_bpb": 1.15862019,
-      "final_exact_val_loss": 1.95628166,
-      "gpu_count": 8,
-      "gpu_type": "H100-SXM-RunPod",
-      "name": "candidate-pr114-int6-mlp3x-slide-full",
-      "run_id": "runpod-verify-pr114-20260320-seed1337",
-      "runtime": "runpod:verify",
-      "stage": "verify",
-      "wallclock_seconds": 737.962
     },
     {
       "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
@@ -216,6 +216,58 @@
     ],
     "verify": [
       {
+        "commit": "774c04ecb07f5cb23a7ca40b85aa597bf493a2e8",
+        "description": "RunPod H100 SXM verify of the draft lane with BigramHash(12288). Strongest raw score from the lost pod, but over the 16,000,000-byte cap.",
+        "final_exact_val_bpb": 1.14231713,
+        "final_exact_val_loss": 1.92874951,
+        "gpu_count": 8,
+        "gpu_type": "H100-SXM-RunPod",
+        "name": "candidate-draft-10l-int5-bigram12288-seed2024-runpod",
+        "run_id": "runpod-draft10l-int5-bigram12288-seed2024-zstd",
+        "runtime": "runpod:verify",
+        "stage": "verify",
+        "wallclock_seconds": 770.463
+      },
+      {
+        "commit": "774c04ecb07f5cb23a7ca40b85aa597bf493a2e8",
+        "description": "RunPod H100 SXM verify of the BigramHash(12288) draft lane with PRUNE_QUANTILE=0.045. Clean under-cap result recovered before the pod vanished.",
+        "final_exact_val_bpb": 1.14276907,
+        "final_exact_val_loss": 1.9295126,
+        "gpu_count": 8,
+        "gpu_type": "H100-SXM-RunPod",
+        "name": "candidate-draft-10l-int5-bigram12288-seed2024-p045-runpod",
+        "run_id": "runpod-draft10l-int5-bigram12288-seed2024-p045",
+        "runtime": "runpod:verify",
+        "stage": "verify",
+        "wallclock_seconds": 771.173
+      },
+      {
+        "commit": "08e08778fec6d06eec1e1f93f2e58971551e5f09",
+        "description": "RunPod H100 SXM rerun of the draft 10-layer mixed int5/int6 BigramHash(10240) SWA recipe at seed 2024 with zstd active. Recovered from the remote log after the pod later disappeared.",
+        "final_exact_val_bpb": 1.14303062,
+        "final_exact_val_loss": 1.92995421,
+        "gpu_count": 8,
+        "gpu_type": "H100-SXM-RunPod",
+        "name": "candidate-draft-10l-int5-bigram-swa-seed2024-runpod",
+        "run_id": "runpod-draft10l-int5-bigram-swa-seed2024-zstd",
+        "runtime": "runpod:verify",
+        "stage": "verify",
+        "wallclock_seconds": 770.476
+      },
+      {
+        "commit": "08e08778fec6d06eec1e1f93f2e58971551e5f09",
+        "description": "RunPod H100 SXM verify of the draft 10-layer mixed int5/int6 BigramHash(10240) SWA recipe. Score comes from the original exact roundtrip log; size comes from a lossless zstd re-export of the saved final_model.pt checkpoint.",
+        "final_exact_val_bpb": 1.14308161,
+        "final_exact_val_loss": 1.93004031,
+        "gpu_count": 8,
+        "gpu_type": "H100-SXM-RunPod",
+        "name": "candidate-draft-10l-int5-bigram-swa-seed42-runpod-reexport",
+        "run_id": "runpod-draft10l-int5-bigram-swa-seed42",
+        "runtime": "runpod:verify",
+        "stage": "verify",
+        "wallclock_seconds": 770.776
+      },
+      {
         "commit": "efcae6870f4405adc5882e27cc8ffa7fc97b9eca",
         "description": "Portability verify of the draft 10-layer mixed int5/int6 BigramHash(10240) SmearGate SWA recipe on 8xH100.",
         "final_exact_val_bpb": 1.15078819,
@@ -227,60 +279,8 @@
         "runtime": "modal:verify",
         "stage": "verify",
         "wallclock_seconds": 1176.255
-      },
-      {
-        "commit": "584795f52d409f0cd9a565711877472c18e770c9",
-        "description": "Second same-provider rerun of PR #114 on the same warm RunPod H100 SXM pod.",
-        "final_exact_val_bpb": 1.15536852,
-        "final_exact_val_loss": 1.95079135,
-        "gpu_count": 8,
-        "gpu_type": "H100-SXM-RunPod",
-        "name": "candidate-pr114-int6-mlp3x-slide-full",
-        "run_id": "runpod-verify-pr114-20260320-seed1338",
-        "runtime": "runpod:verify",
-        "stage": "verify",
-        "wallclock_seconds": 738.233
-      },
-      {
-        "commit": "584795f52d409f0cd9a565711877472c18e770c9",
-        "description": "Third same-provider rerun of PR #114 on the same warm RunPod H100 SXM pod.",
-        "final_exact_val_bpb": 1.15563461,
-        "final_exact_val_loss": 1.95124064,
-        "gpu_count": 8,
-        "gpu_type": "H100-SXM-RunPod",
-        "name": "candidate-pr114-int6-mlp3x-slide-full",
-        "run_id": "runpod-verify-pr114-20260320-seed1339",
-        "runtime": "runpod:verify",
-        "stage": "verify",
-        "wallclock_seconds": 738.236
-      },
-      {
-        "commit": "aa0bd5b7b084e26d9b91d5df94b14c6f012fb45f",
-        "description": "Full 8-GPU verification of PR #135 with packed 6-bit export for int6 tensors.",
-        "final_exact_val_bpb": 1.15852413,
-        "final_exact_val_loss": 1.95611405,
-        "gpu_count": 8,
-        "gpu_type": "H100!",
-        "name": "candidate-pr135-packed-int6-full",
-        "run_id": "20260320-000330-candidate-pr135-packed-int6-full",
-        "runtime": "modal:verify",
-        "stage": "verify",
-        "wallclock_seconds": 1174.478
-      },
-      {
-        "commit": "584795f52d409f0cd9a565711877472c18e770c9",
-        "description": "Fresh same-provider rerun of PR #114 with the published long-context and selective-precision recipe on RunPod H100 SXM.",
-        "final_exact_val_bpb": 1.15862019,
-        "final_exact_val_loss": 1.95628166,
-        "gpu_count": 8,
-        "gpu_type": "H100-SXM-RunPod",
-        "name": "candidate-pr114-int6-mlp3x-slide-full",
-        "run_id": "runpod-verify-pr114-20260320-seed1337",
-        "runtime": "runpod:verify",
-        "stage": "verify",
-        "wallclock_seconds": 737.962
       }
     ]
   },
-  "updated_at": "2026-03-21T04:27:45+00:00"
+  "updated_at": "2026-03-21T09:21:27+00:00"
 }

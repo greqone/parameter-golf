@@ -1,0 +1,23 @@
+{
+  "name": "candidate-draft-10l-int5-b622k-seed2024-full",
+  "description": "Modal H100 recalibration of the draft 10-layer mixed int5/int6 BigramHash(10240) SWA recipe with a smaller global token batch to recover RunPod-like step budget on slower H100! nodes.",
+  "stage": "verify",
+  "script_path": "experiments/custom_trainers/train_gpt_draft_10l_int5_bigram_swa.py",
+  "data_variant": "sp1024",
+  "train_shards": 80,
+  "seed": 2024,
+  "checkpoint_every": 500,
+  "env": {
+    "TRAIN_BATCH_TOKENS": "622592"
+  },
+  "tags": [
+    "frontier",
+    "draft-port",
+    "modal-recalibration",
+    "int5-int6",
+    "bigram10240",
+    "batch622k",
+    "seed2024",
+    "verify"
+  ]
+}

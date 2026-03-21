@@ -1,0 +1,24 @@
+{
+  "name": "candidate-draft-10l-int5-bigram12288-b622k-seed2024-full",
+  "description": "Modal H100 verify of the draft 10-layer mixed int5/int6 SWA recipe with a reduced token batch for step recovery and a larger BigramHash table to spend remaining byte headroom on more pair capacity.",
+  "stage": "verify",
+  "script_path": "experiments/custom_trainers/train_gpt_draft_10l_int5_bigram_swa.py",
+  "data_variant": "sp1024",
+  "train_shards": 80,
+  "seed": 2024,
+  "checkpoint_every": 500,
+  "env": {
+    "TRAIN_BATCH_TOKENS": "622592",
+    "BIGRAM_VOCAB_SIZE": "12288"
+  },
+  "tags": [
+    "frontier",
+    "draft-port",
+    "modal-recalibration",
+    "int5-int6",
+    "bigram12288",
+    "batch622k",
+    "seed2024",
+    "verify"
+  ]
+}
