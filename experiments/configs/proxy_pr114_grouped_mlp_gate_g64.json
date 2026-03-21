@@ -1,0 +1,40 @@
+{
+  "name": "proxy-pr114-grouped-mlp-gate-g64",
+  "description": "PR114-family proxy with finer grouped FFN channel gates inspired by Mixture-of-Channels style routed compute.",
+  "stage": "proxy",
+  "script_path": "experiments/custom_trainers/train_gpt_pr114_grouped_mlp_gate.py",
+  "data_variant": "sp1024",
+  "train_shards": 1,
+  "seed": 1337,
+  "checkpoint_every": 0,
+  "env": {
+    "ITERATIONS": "4000",
+    "WARMUP_STEPS": "0",
+    "VAL_LOSS_EVERY": "0",
+    "TRAIN_LOG_EVERY": "25",
+    "TRAIN_BATCH_TOKENS": "262144",
+    "VAL_BATCH_SIZE": "524288",
+    "MAX_WALLCLOCK_SECONDS": "90",
+    "TRAIN_SEQ_LEN": "2048",
+    "EVAL_SEQ_LEN": "2048",
+    "EVAL_STRIDE": "256",
+    "MLP_HIDDEN": "1536",
+    "MLP_GATE_GROUPS": "64",
+    "MLP_GATE_BIAS_INIT": "0.0",
+    "MATRIX_LR": "0.02",
+    "SCALAR_LR": "0.02",
+    "TIED_EMBED_LR": "0.03",
+    "MUON_MOMENTUM": "0.99",
+    "MUON_MOMENTUM_WARMUP_START": "0.92",
+    "MUON_MOMENTUM_WARMUP_STEPS": "1500",
+    "WARMDOWN_ITERS": "3000",
+    "GRAD_CLIP_NORM": "0.3"
+  },
+  "tags": [
+    "frontier",
+    "pr114",
+    "grouped-mlp-gate",
+    "moc-lite",
+    "g64"
+  ]
+}
