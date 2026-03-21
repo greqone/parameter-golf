@@ -1,0 +1,19 @@
+{
+  "name": "candidate-draft-10l-int5-bigram-swa-seed42-full",
+  "description": "Portability verify of the draft 10-layer mixed int5/int6 BigramHash(10240) SmearGate SWA recipe on 8xH100.",
+  "stage": "verify",
+  "script_path": "experiments/custom_trainers/train_gpt_draft_10l_int5_bigram_swa.py",
+  "data_variant": "sp1024",
+  "train_shards": 80,
+  "seed": 42,
+  "checkpoint_every": 500,
+  "env": {},
+  "tags": [
+    "frontier",
+    "draft-port",
+    "int5-int6",
+    "bigram10240",
+    "swa",
+    "verify"
+  ]
+}

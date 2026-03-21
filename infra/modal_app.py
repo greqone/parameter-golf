@@ -22,15 +22,18 @@ RESULTS_VOLUME_NAME = os.environ.get("PG_MODAL_RESULTS_VOLUME", "pg-results")
 
 def _ignore_local_path(path: Path) -> bool:
     text = path.as_posix()
+    normalized = f"/{text.lstrip('./')}"
     return any(
-        fragment in text
+        fragment in normalized
         for fragment in (
             "/.git",
             "/.venv",
+            "/.venv311",
             "/__pycache__",
             "/data/datasets",
             "/logs",
             "/experiments/runs",
+            "/experiments/benchmarks",
         )
     )
 

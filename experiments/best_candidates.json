@@ -1,6 +1,19 @@
 {
   "best_overall": [
     {
+      "commit": "efcae6870f4405adc5882e27cc8ffa7fc97b9eca",
+      "description": "Portability verify of the draft 10-layer mixed int5/int6 BigramHash(10240) SmearGate SWA recipe on 8xH100.",
+      "final_exact_val_bpb": 1.15078819,
+      "final_exact_val_loss": 1.94305251,
+      "gpu_count": 8,
+      "gpu_type": "H100!",
+      "name": "candidate-draft-10l-int5-bigram-swa-seed42-full",
+      "run_id": "20260321-040611-candidate-draft-10l-int5-bigram-swa-seed42-full",
+      "runtime": "modal:verify",
+      "stage": "verify",
+      "wallclock_seconds": 1176.255
+    },
+    {
       "commit": "584795f52d409f0cd9a565711877472c18e770c9",
       "description": "Second same-provider rerun of PR #114 on the same warm RunPod H100 SXM pod.",
       "final_exact_val_bpb": 1.15536852,
@@ -51,19 +64,6 @@
       "runtime": "runpod:verify",
       "stage": "verify",
       "wallclock_seconds": 737.962
-    },
-    {
-      "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
-      "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, no fp16 passthrough, and denser stride-16 sliding eval. Repeat RunPod H100 SXM rerun of the strongest seed to estimate inter-run variance.",
-      "final_exact_val_bpb": 1.16134475,
-      "final_exact_val_loss": 1.96087605,
-      "gpu_count": 8,
-      "gpu_type": "H100-SXM-RunPod",
-      "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
-      "run_id": "runpod-verify-20260320b-seed1337r1",
-      "runtime": "runpod:verify",
-      "stage": "verify",
-      "wallclock_seconds": 1132.174
     },
     {
       "commit": "d84a3e819100504d96879e1e36d022efa5cbb81b",
@@ -216,6 +216,19 @@
     ],
     "verify": [
       {
+        "commit": "efcae6870f4405adc5882e27cc8ffa7fc97b9eca",
+        "description": "Portability verify of the draft 10-layer mixed int5/int6 BigramHash(10240) SmearGate SWA recipe on 8xH100.",
+        "final_exact_val_bpb": 1.15078819,
+        "final_exact_val_loss": 1.94305251,
+        "gpu_count": 8,
+        "gpu_type": "H100!",
+        "name": "candidate-draft-10l-int5-bigram-swa-seed42-full",
+        "run_id": "20260321-040611-candidate-draft-10l-int5-bigram-swa-seed42-full",
+        "runtime": "modal:verify",
+        "stage": "verify",
+        "wallclock_seconds": 1176.255
+      },
+      {
         "commit": "584795f52d409f0cd9a565711877472c18e770c9",
         "description": "Second same-provider rerun of PR #114 on the same warm RunPod H100 SXM pod.",
         "final_exact_val_bpb": 1.15536852,
@@ -266,21 +279,8 @@
         "runtime": "runpod:verify",
         "stage": "verify",
         "wallclock_seconds": 737.962
-      },
-      {
-        "commit": "f6c7d4008f03fd3104e3ebff627ca4bc9de3d60e",
-        "description": "Full-track PR135 candidate with qscale export, a 1376-hidden MLP, full bigram capacity, no fp16 passthrough, and denser stride-16 sliding eval. Repeat RunPod H100 SXM rerun of the strongest seed to estimate inter-run variance.",
-        "final_exact_val_bpb": 1.16134475,
-        "final_exact_val_loss": 1.96087605,
-        "gpu_count": 8,
-        "gpu_type": "H100-SXM-RunPod",
-        "name": "candidate-pr135-qscale-mlp1376-bigram128-nofp16-stride16-full",
-        "run_id": "runpod-verify-20260320b-seed1337r1",
-        "runtime": "runpod:verify",
-        "stage": "verify",
-        "wallclock_seconds": 1132.174
       }
     ]
   },
-  "updated_at": "2026-03-21T02:45:05+00:00"
+  "updated_at": "2026-03-21T04:27:45+00:00"
 }
