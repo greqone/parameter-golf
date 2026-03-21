@@ -1,0 +1,32 @@
+{
+  "provider": "runpod",
+  "pod_id": "3m0b4blkdgg27s",
+  "template_id": "y5cejece4j",
+  "location": "US-CA-2",
+  "status": "ok",
+  "notes": "Third same-provider rerun of the PR114 long-context selective-precision baseline on the same warm RunPod H100 SXM pod.",
+  "candidate_config": "experiments/configs/candidate_pr114_int6_mlp3x_slide_full.json",
+  "script_path": "experiments/external_prs/114/train_gpt.py",
+  "commit": "584795f52d409f0cd9a565711877472c18e770c9",
+  "run_id": "runpod-verify-pr114-20260320-seed1339",
+  "seed": 1339,
+  "gpu_type": "H100-SXM-RunPod",
+  "gpu_count": 8,
+  "train_shards": 80,
+  "logged_train_time_ms": 600074,
+  "step": 7427,
+  "iterations": 20000,
+  "peak_memory_mib": 16734,
+  "pre_quant_val_loss": 1.9763,
+  "pre_quant_val_bpb": 1.1705,
+  "roundtrip_exact_val_loss": 1.98775110,
+  "roundtrip_exact_val_bpb": 1.17725817,
+  "final_exact_val_loss": 1.95124064,
+  "final_exact_val_bpb": 1.15563461,
+  "compressed_bytes": 15906138,
+  "code_bytes": 53572,
+  "total_bytes": 15959710,
+  "artifacts": [
+    "runpod_pr114_verify_seed1339.log"
+  ]
+}
